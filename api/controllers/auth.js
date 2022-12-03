@@ -8,7 +8,7 @@ export const login = async (req,res,next) =>{
     const name = req.body.username;
     try{
         const user = await Login.findOne({username:name});
-        if(!user) return next(createError(404,"User not found"));
+        if(!user) return next(createError(404,"User not found")); //user name authentication
         
         const ispasswordCorrect = await bcrypt.compare(req.body.password, user.password);
         if(!ispasswordCorrect) return next(createError(400,"Wrong password or username!"));
