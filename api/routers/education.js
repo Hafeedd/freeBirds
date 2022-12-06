@@ -18,3 +18,5 @@ route.post("/createEdu/:id",verifyUser,createEdu)
 
 //create education
 route.post("/createEdu/:id",verifyUser,createEdu)
+
+export default route;

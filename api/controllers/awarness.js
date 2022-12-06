@@ -1,5 +1,5 @@
 import Awarness from "../models/awarness.js"
-import { createError } from "../utils/error.js";
+import { createError } from "../utils/error.js"
 
 //create awarness
 export const createAwarness = async (req,res,next) =>{

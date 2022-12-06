@@ -5,6 +5,8 @@ import cors from "cors"
 import cookieParser from "cookie-parser";
 import orgRegR from "./routers/auth.js"
 import awarnessR from "./routers/awarness.js"
+import educationR from "./routers/education.js"
+import missingChildR from "./routers/missingChild.js"
 
 
 const app = express()
@@ -31,6 +33,8 @@ app.use(cors())
 
 app.use("/api/auth",orgRegR);
 app.use("/api/awarness",awarnessR);
+app.use("/api/education",educationR);
+app.use("/api/missingChild",missingChildR);
 
 
 app.use((err,req,res,next)=>{
