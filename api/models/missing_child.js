@@ -21,10 +21,6 @@ const misschildSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    phoneno:{
-        type: Number,
-        required: true,
-    },
     image:{
         type: [String],
         required: true,
