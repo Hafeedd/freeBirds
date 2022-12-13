@@ -37,7 +37,7 @@ const misschildSchema = new mongoose.Schema({
     },
     date:{
         type: Date,
-        // required: true,
+        required: true,
     },
     status:{
         type: Boolean,
