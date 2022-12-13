@@ -7,23 +7,21 @@ const misschildSchema = new mongoose.Schema({
     },
     name:{
         type: String,
-        required: true,
     },
-    location:{
+    state:{
         type: String,
         required: true,
     },
-    email:{
-        type: String,
-        required: true,
-    },
-    gender:{
+    city:{
         type: String,
         required: true,
     },
     image:{
         type: [String],
         required: true,
+    },
+    gender:{
+        type: String,
     },
     height:{
         type: Number,
@@ -39,13 +37,13 @@ const misschildSchema = new mongoose.Schema({
     },
     date:{
         type: Date,
-        required: true,
+        // required: true,
     },
     status:{
         type: Boolean,
         default:false,
     },
 },
-{timestamps:true}
+{timestamps:true},
 );
 export default mongoose.model("MissingChild",misschildSchema);

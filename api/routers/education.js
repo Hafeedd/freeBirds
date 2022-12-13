@@ -1,22 +1,22 @@
 import express from "express";
-import { createEdu, deleteEdu, updateEdu } from "../controllers/education";
-import { verifyOrg, verifyOrgWithId, verifyUser } from "../utils/verifyToken";
+import { createEdu, deleteEdu, updateEdu } from "../controllers/education.js";
+import { verifyOrg, verifyOrgWithId, verifyUser } from "../utils/verifyToken.js";
 
 const route = express.Router();
 
 //create education
-route.post("/createEdu/:id",verifyOrg,createEdu)
+route.post("/:id",verifyOrg,createEdu)
 
 //delete education
-route.post("/deleteEdu/:id",verifyOrgWithId,deleteEdu)
+route.delete("/:id",verifyOrgWithId,deleteEdu)
 
-//create education
-route.post("/updateEdu/:id",verifyOrgWithId,updateEdu)
+//update education
+route.put("/:id",verifyOrgWithId,updateEdu)
 
-//create education
-route.post("/createEdu/:id",verifyUser,createEdu)
+//view education
+route.get("/createEdu/:id",createEdu)
 
-//create education
-route.post("/createEdu/:id",verifyUser,createEdu)
+//view educations
+route.get("/",createEdu)
 
 export default route;
