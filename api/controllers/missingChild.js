@@ -5,6 +5,7 @@ import { createError } from "../utils/error.js"
 export const createMissingChild = async (req,res,next) =>{
     try{
         const missingChild = new missing_child({
+            upload
             o_id:req.params.id,
             ...req.body,
         })
