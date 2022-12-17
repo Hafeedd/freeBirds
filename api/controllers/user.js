@@ -38,12 +38,7 @@ export const updateUser = async (req,res,next) => {
     try{
         const UpdateUser = await Public.findByIdAndUpdate(req.params.id,
             {$set:{
-                name:req.body.name,
-                state:req.body.state,
-                gender:req.body,
-                district:req.body.district,
-                email:req.body.email,
-                phoneno:req.body.phoneno,
+                ...req.body,
                 password:hash
             }},{new:true})
             const {password,...others} = UpdateUser._doc;
