@@ -20,7 +20,7 @@ routers.get("/:id",getAwarness)
 routers.get("/",getAllAwarness)
 
 //delete awareness
-routers.delete("/:id",verifyOrg,deletAwarness)
+routers.delete("/:id",verifyOrgWithId,deletAwarness)
 
 
 export default routers;

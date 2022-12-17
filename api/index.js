@@ -7,6 +7,7 @@ import orgRegR from "./routers/auth.js"
 import awarnessR from "./routers/awarness.js"
 import educationR from "./routers/education.js"
 import missingChildR from "./routers/missingChild.js"
+import serviceR from "./routers/service.js"
 
 
 const app = express()
@@ -35,6 +36,7 @@ app.use("/api/auth",orgRegR);
 app.use("/api/awarness",awarnessR);
 app.use("/api/education",educationR);
 app.use("/api/missingChild",missingChildR);
+app.use("api/service",serviceR)
 
 
 app.use((err,req,res,next)=>{
