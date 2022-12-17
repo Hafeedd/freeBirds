@@ -6,8 +6,7 @@ export const createEdu = async (req,res,next) => {
     try{
         const edu = new Education({
             o_id:req.params.id,
-            education:req.body.education,
-            info:req.body.info,
+            ...req.body,
         })
         await edu.save();
         res.status(200).json(edu);

@@ -9,12 +9,8 @@ export const registerOrg = async (req,res,next) =>{
     const hash = bcrypt.hashSync(req.body.password,salt);
     try{
         const org = new Organisation({
-            name:req.body.name,
             password:hash,
-            state:req.body.state,
-            district:req.body.district,
-            email:req.body.email,
-            phoneno:req.body.phoneno,
+            ...req.body,
         })
         await org.save()
         const {password,...others} = org._doc;
@@ -42,11 +38,7 @@ export const updateOrg = async (req,res,next) => {
     try{
         const UpdateOrg = await Organisation.findByIdAndUpdate(req.params.id,
             {$set:{
-                name:req.body.name,
-                state:req.body.state,
-                district:req.body.district,
-                email:req.body.email,
-                phoneno:req.body.phoneno,
+                ...req.body,
                 password:hash
             }},{new:true})
             const {password,...others} = UpdateOrg._doc;

@@ -9,13 +9,8 @@ export const registerUser = async (req,res,next) =>{
     const hash = bcrypt.hashSync(req.body.password,salt);
     try{
         const use = new Public({
-            name:req.body.name,
             password:hash,
-            state:req.body.state,
-            district:req.body.district,
-            email:req.body.email,
-            gender:req.body.gender,
-            phoneno:req.body.phoneno,
+            ...req.body,
         })       
         await use.save()
         const {password,...others} = use._doc;

@@ -5,16 +5,6 @@ import { createError } from "../utils/error.js"
 export const createMissingChild = async (req,res,next) =>{
     try{
         const missingChild = new missing_child({
-            // o_id:req.params.id,
-            // name:req.body.name,
-            // state:req.body.state,
-            // city:req.body.city,
-            // image:req.body.image,
-            // gender:req.body.gender,
-            // height:req.body.height,
-            // age:req.body.age,
-            // color:req.body.color,
-            // dress:req.body.dress,
             o_id:req.params.id,
             ...req.body,
         })

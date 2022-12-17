@@ -6,8 +6,7 @@ export const createAwarness = async (req,res,next) =>{
     try{
         const awarness = new Awarness({
             o_id:req.params.id,
-            awarness:req.body.awarness,
-            details:req.body.details,
+            ...req.body,
         })
         await awarness.save();
         res.status(200).json(awarness);
