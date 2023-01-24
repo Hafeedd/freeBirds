@@ -1,37 +1,26 @@
 import multer from "multer";
-import { extname } from "path";
+import { v4 as uuidv4 } from "uuid";
+import path from "path";
 
-const storageEngine = multer.diskStorage({
-    destination:"./images",
-    filename: (req,file,cb) =>{
-        cb(null, `${Date.now()}--${file.originalname}`);
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'images')
     },
+    filename: (req, file, cb) => {
+        cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname));
+        console.log("uploading photo")
+    }
 });
 
-
-//image filtering
-const path = require("path");
-const checkFileType = (file,cb) =>{
-    
-    //Allowed file extensions
-    const fileTypes = /jpeg|jpg|png|gif|svg/;
-
-    //check extension names
-    const mimeType = fileTypes.test(path.extname(file.originalname).toLocaleLowerCase());
-
-    if (mimeType && extname){
-        return cb(null, true);
+const fileFilter = (req, file, cb) => {
+    const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if(allowedFileTypes.includes(file.mimetype)) {
+        cb(null, true);
+    } else {
+        cb(null, "only images can be uploaded");
+        console.log("photo filtered")
     }
-    else{
-        cb("Error: you can Only Upload Images!!");
-    }
-};
+}
 
-
-export const upload = multer({
-    storage: storageEngine,
-    limits:{fileSize: 2000000 },
-    fileFilter: (req,file,cb) =>{
-        checkFileType(file, cb);
-    },
-});
+let upload = multer({ storage, fileFilter });
+export default upload;

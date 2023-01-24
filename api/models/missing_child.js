@@ -5,8 +5,13 @@ const misschildSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    aws_face_id:{
+        type: String,
+        required: true,
+    },
     name:{
         type: String,
+        required: true,
     },
     state:{
         type: String,
@@ -16,8 +21,8 @@ const misschildSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    image:{
-        type: [String],
+    photo:{
+        type: String,
         required: true,
     },
     gender:{
@@ -37,7 +42,7 @@ const misschildSchema = new mongoose.Schema({
     },
     date:{
         type: Date,
-        required: true,
+        // required: true,
     },
     status:{
         type: Boolean,

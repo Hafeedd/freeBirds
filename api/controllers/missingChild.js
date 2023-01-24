@@ -1,19 +1,29 @@
-import missing_child from "../models/missing_child.js"
-import { createError } from "../utils/error.js"
+import missing_child from "../models/missing_child.js";
+import { createError } from "../utils/error.js";
+import { insertFace } from "./searchChild.js";
+// import { upload } from "../utils/uploader.js";
 
 //create missing_child
+var data ;
 export const createMissingChild = async (req,res,next) =>{
-    try{
+    try{ 
+        insertFace(req,async (imageId)=>{
+        if(imageId) {
         const missingChild = new missing_child({
-            upload
+            // photo:req.file.filename,
+            aws_face_id:imageId,
             o_id:req.params.id,
             ...req.body,
         })
         await missingChild.save()
-        res.status(200).json(missingChild);
+        res.status(200).json("Missing Child created successfully")
+        console.log("missing child created")
+    }else return err;
+    })
     }catch(err){
         next(createError(400,"Failed to create missing child."))
     }
+    
 };
 
 //update missing child

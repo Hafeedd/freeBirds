@@ -1,13 +1,15 @@
-import express from "express"
-import mongoose from "mongoose"
-import dotenv from "dotenv"
-import cors from "cors"
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
 import cookieParser from "cookie-parser";
-import orgRegR from "./routers/auth.js"
-import awarnessR from "./routers/awarness.js"
-import educationR from "./routers/education.js"
-import missingChildR from "./routers/missingChild.js"
-import serviceR from "./routers/service.js"
+import orgRegR from "./routers/auth.js";
+import awarnessR from "./routers/awarness.js";
+import educationR from "./routers/education.js";
+import missingChildR from "./routers/missingChild.js";
+import serviceR from "./routers/service.js";
+import searchR from "./routers/searchChild.js"
+
 
 
 const app = express()
@@ -36,7 +38,8 @@ app.use("/api/auth",orgRegR);
 app.use("/api/awarness",awarnessR);
 app.use("/api/education",educationR);
 app.use("/api/missingChild",missingChildR);
-app.use("api/service",serviceR)
+app.use("/api/service",serviceR)
+app.use("/api/searchMC",searchR)
 
 
 app.use((err,req,res,next)=>{
@@ -49,6 +52,7 @@ app.use((err,req,res,next)=>{
         stack: err.stack,
     })
 })
+
 
 app.listen(8800,()=>{
     connect();
