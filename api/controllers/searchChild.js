@@ -1,5 +1,4 @@
-import { indexFaces, search_face } from "../utils/searchChild.js";
-
+import { indexFaces, search_face, deleteFace } from "../utils/searchChild.js";
 
 //detect face
 export const detectFace = (req,res) =>{
@@ -9,8 +8,14 @@ export const detectFace = (req,res) =>{
     }
 
     search_face(obj, (data) => {
-        if(data.found) res.send(data);
-        else res.send(data);
+        if(data.FaceMatches)
+        {
+            console.log("err")
+            res.send(data)
+        }
+        else{
+            res.send(data);
+            console.log("found matching face")}
     });
 }
 
@@ -30,7 +35,7 @@ export const insertFace = (req,callback)=>{
 }
 
 //delete face in collection
-export const deleteFace = (req,res) => {
+export const deleteface = (req,res) => {
     const obj = {
         face_id: req.body.face_id
     }

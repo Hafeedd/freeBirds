@@ -1,5 +1,5 @@
 import express from "express";
-import { createMissingChild, MissingChild, MissingChilds, updateMissingChild } from "../controllers/missingChild.js";
+import { createMissingChild, MissingChild, MissingChilds, searchMCByFaceId, updateMissingChild } from "../controllers/missingChild.js";
 import { insertFace } from "../controllers/searchChild.js";
 // import upload from "../utils/uploader.js";
 // import { verifyOrg } from "../utils/verifyToken.js";
@@ -15,10 +15,13 @@ route.post("/:id",createMissingChild);
 route.put("/:id",updateMissingChild);
 
 //view missing child
-route.get("/:id",MissingChild);
+route.get("/find/:id",MissingChild);
 
 //view missing children
 route.get("/",MissingChilds);
+
+//view missing children using aws-face-id
+route.get("/",searchMCByFaceId);
 
 
 export default route;

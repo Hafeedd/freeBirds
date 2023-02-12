@@ -1,15 +1,19 @@
 import Awarness from "../models/awarness.js"
 import { createError } from "../utils/error.js"
+import { verifyToken } from "../utils/verifyToken.js";
 
 //create awarness
 export const createAwarness = async (req,res,next) =>{
     try{
+        verifyToken(async(req,res)=>{
         const awarness = new Awarness({
-            o_id:req.params.id,
+            o_id:req.user.id,
             ...req.body,
         })
+    
         await awarness.save();
         res.status(200).json(awarness);
+    })    
     }catch(err){
     next(createError(400,"Failed to create awarness."))
 } 

@@ -5,12 +5,14 @@ import { createError } from "../utils/error.js"
 //create service
 export const createServices = async (req,res,next) =>{
     try{
+        verifyToken(async(req,res)=>{
         const service = new Service({
-            o_id:req.params.id,
+            o_id:req.user.id,
             ...req.body
         })
         await service.save()
         res.status(200).json(service)
+    })
     }catch(err){
     next(createError(400,"Failed to create services."))
     }
@@ -28,7 +30,7 @@ export const updateServices = async (req,res,next) =>{
 };
 
 //get service
-export const viewServce = async (req,res,next) =>{
+export const viewService = async (req,res,next) =>{
     try{
         const service = await Service.findById(req.params.id)
         res.status(200).json(service)
@@ -38,7 +40,7 @@ export const viewServce = async (req,res,next) =>{
 };
 
 //get services
-export const viewServces = async (req,res,next) =>{
+export const viewServices = async (req,res,next) =>{
     try{
         const services = await Service.findBy()
         res.status(200).json(services)
@@ -48,7 +50,7 @@ export const viewServces = async (req,res,next) =>{
 };
 
 //delete service
-export const deleteServce = async (req,res,next) =>{
+export const deleteService = async (req,res,next) =>{
     try{
         await Service.findByIdAndDelete,(req.params.id)
         res.status(200).json("Service deleted successfully")

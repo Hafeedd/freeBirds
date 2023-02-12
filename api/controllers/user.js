@@ -6,27 +6,33 @@ import { createError } from "../utils/error.js";
 //register User
 export const registerUser = async (req,res,next) =>{
     const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(req.body.password,salt);
+    const hash = bcrypt.hashSync(req.body.password,salt); 
     try{
-        const use = new Public({
-            password:hash,
+        const users = await Public.findOne({name:req.body.name}) || false 
+        const email = await Public.findOne({email:req.body.email}) || false
+        if(users){
+            next(createError(404,"User name already exists."))
+        }
+        else if(email){
+            next(createError(404,"email already exists."))
+        }
+        else{
+        const user = new Public({
             ...req.body,
-        })       
-        await use.save()
-        const {password,...others} = use._doc;
-        res.status(200).json(others)
-    try{
+            password:hash,
+        })   
+        await user.save()
+        const {password,...others} = user._doc;
+        res.status(200).json({...others})
         const userLogin = new Login({
-        _id:use._id,
+        _id:user._id,
         username:req.body.name,
         password:hash,
         type:{isUser:true}
-        })
+        }) 
         await userLogin.save()
-    }catch(err){
-        next(createError(404,"failed to create User."))
-    }   
-    }catch(err){
+        console.log("saved")
+    }}catch(err){
         next(createError(404,"failed to create User."))
     }
 };
@@ -41,17 +47,13 @@ export const updateUser = async (req,res,next) => {
                 ...req.body,
                 password:hash
             }},{new:true})
-            const {password,...others} = UpdateUser._doc;
-            res.status(200).json({...others})
-        try{
             await Login.findByIdAndUpdate(req.params.id,
                 {$set:{
                     username:req.body.name,
                     password:hash
                 }},{new:true})
-        }catch(err){
-            next(err)
-        }
+            const {password,...others} = UpdateUser._doc;
+            res.status(200).json({...others})
     }catch(err){
     next(err)
     }
@@ -61,12 +63,8 @@ export const updateUser = async (req,res,next) => {
 export const deleteUser = async (req,res,next) => {
     try{
         await Public.findByIdAndDelete(req.params.id)
+        await Login.findByIdAndDelete(req.params.id)
         res.status(200).json("User deleted successfully.")
-        try{
-            await Login.findByIdAndDelete(req.params.id)
-        }catch(err){
-            next(err)
-        }
     }catch(err){
         next(err)
     }

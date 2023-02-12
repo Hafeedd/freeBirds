@@ -8,16 +8,15 @@ const orgSchema = new mongoose.Schema({
     },
     password:{
         type: String,
-        required: true,
-        select:false,
+        // required: true,
     },
     state:{
         type: String,
-        required: true,
+        // required: true,
     },
     district:{
         type: String,
-        required: true,
+        // required: true,
     },
     email:{
         type: String,
@@ -26,7 +25,7 @@ const orgSchema = new mongoose.Schema({
     },
     phoneno:{
         type: Number,
-        required: true,
+        // required: true,
         unique: true,
         min:10,
     },

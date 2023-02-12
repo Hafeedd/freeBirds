@@ -28,16 +28,16 @@ export const search_face = (obj, callback) => {
 	 	"MaxFaces": 1 // set the number face detect in image send
 	}, (err, data) => {
 	 	if (err) {
-			console.log(err)
+			console.log("err")
 			callback(err);
 	 	} else { 
 			if(data.FaceMatches && data.FaceMatches.length > 0 && data.FaceMatches[0].Face)
 			{
-				console.log(data.FaceMatches[0].Face)
-				callback (data.FaceMatches[0].Face);	
+				// console.log(data.FaceMatches[0].Face)
+				callback (data.FaceMatches[0].Face);
+				// console.log(data)	
 			} else {
-				objReturn.found = false
-				callback (objReturn);	
+				callback(data);	
 			}
 		}
 	});

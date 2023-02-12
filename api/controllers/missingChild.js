@@ -1,6 +1,6 @@
 import missing_child from "../models/missing_child.js";
 import { createError } from "../utils/error.js";
-import { insertFace } from "./searchChild.js";
+import { deleteface, insertFace } from "./searchChild.js";
 // import { upload } from "../utils/uploader.js";
 
 //create missing_child
@@ -39,8 +39,15 @@ export const updateMissingChild = async (req,res,next) =>{
 //delete missing child
 export const deleteMissingChild = async (req,res,next) =>{
     try{
-        const missingChild = await missing_child.findByIdAndDelete(req.params.id)
-        res.status(200).json("deleted");
+        deleteFace(async(req,res)=>{
+        if(res.data.err){
+            res.status(400).json("Something went wrong.")
+        }
+        else{
+            await missing_child.findByIdAndDelete(req.params.id)
+            res.status(200).json("Deleted the missing chiled.");
+        }
+    })    
     }catch(err){
         next(createError(400,"Failed to delete missing child."))
     }
@@ -61,6 +68,17 @@ export const MissingChilds = async (req,res,next) =>{
     try{
         const missingChild = await missing_child.find()
         res.status(200).json(missingChild);
+    }catch(err){
+        next(createError(400,"Failed to get missing child."))
+    }
+};
+
+//view missing children usinf aws-face-id
+export const searchMCByFaceId = async (req,res,next) =>{
+    const face_id = req.query.id;
+    try{
+        const foundChild = await missing_child.find({aws_face_id:face_id})
+        res.status(200).json(foundChild);
     }catch(err){
         next(createError(400,"Failed to get missing child."))
     }

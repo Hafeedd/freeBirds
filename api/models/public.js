@@ -3,35 +3,35 @@ import mongoose from "mongoose";
 const publicSchema = new mongoose.Schema({
     name:{
         type: String,
-        required: true,
-        unique: true
+        // required: true,
+        // unique: true
+
     },
     password:{
         type: String,
-        required: true,
-        Select:false,
+        // required: true,
     },
     district:{
         type: String,
-        required: true,
+        // required: true,
     },   
     state:{
         type: String,
-        required: true,
+        // required: true,
     },
     email:{
         type: String,
-        required: true,
-        unique: true
+        // required: true,
+        // unique: true
     },
     gender:{
         type: String,
-        required: true,
+        // required: true,
     },
-    phoneno:{
+    phone:{
         type: Number,
-        required: true,
-        unique: true
+        // required: true,
+        // unique: true
     },
 },
 {timestamps:true}

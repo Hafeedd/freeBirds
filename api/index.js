@@ -10,8 +10,6 @@ import missingChildR from "./routers/missingChild.js";
 import serviceR from "./routers/service.js";
 import searchR from "./routers/searchChild.js"
 
-
-
 const app = express()
 dotenv.config()
 
@@ -30,9 +28,9 @@ mongoose.connection.on("disconnected",()=>{
 
 //middleware
 
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 app.use(cookieParser())
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
 
 app.use("/api/auth",orgRegR);
 app.use("/api/awarness",awarnessR);
@@ -46,6 +44,7 @@ app.use((err,req,res,next)=>{
     const errStatus = err.status || 500;
     const errMessage = err.message || "Something went wrong."
     return res.status(errStatus).json({
+        a:"error from index",
         success: false,
         status: errStatus,
         message: errMessage,

@@ -4,12 +4,14 @@ import { createError } from "../utils/error.js";
 //create education
 export const createEdu = async (req,res,next) => {
     try{
+        verifyToken(async(req,res)=>{
         const edu = new Education({
-            o_id:req.params.id,
+            o_id:req.user.id,
             ...req.body,
         })
         await edu.save();
         res.status(200).json(edu);
+    })
     }catch(err){
     next(createError(404,"Falied to create education."))
     }

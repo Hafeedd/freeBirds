@@ -23,6 +23,7 @@ export const registerOrg = async (req,res,next) =>{
             type:{isOrg:true}
             })    
             await orgLogin.save() 
+            console.log("organisation registered")
         }catch(err){
             next(createError(404,"failed to create Organisation."))
         }

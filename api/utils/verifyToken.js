@@ -1,17 +1,28 @@
-import jwt from "jsonwebtoken";
 import { createError } from "../utils/error.js";
+import { decrypt } from "./cryto.js";
+
+
 
 // verify token
-export const verifyToken = (req,res,next) => {
+export const verifyToken = (req,next) => {
     const token = req.cookies.access_token;
     if(!token){
         return next(createError(404,"You are not autherized!"))
     }
-    jwt.verify(token,process.env.JWT,(err,user)=>{
-        if(err) return next(createError(403,"Token not valid!"))
+    try{
+        // console.log("verifying token")
+        const user = decrypt(token)
+        // console.log("token verified")
+        
+        data = JSON.parse(user)
+        console.log("data"+data)
+        console.log("user"+user)
         req.user = user;
         next()
-    })
+    }catch(err){
+        return next(createError(403,"Token not valid!"))
+    }
+    
 }
 
 // verify Admin
