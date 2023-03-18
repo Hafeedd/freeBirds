@@ -27,8 +27,7 @@ export const Login = () => {
     console.log("token"+res.data.token)
       dispatch({type: "LOGIN_SUCCESS", payload: res.data.token })
       console.log(res) 
-      navigate("/searchMC")
-      console.log(res)
+      navigate("/")
     }catch (err) {
       console.log(err)
       dispatch({type: "LOGIN_FAILURE", payload:  err.response.data })
@@ -100,7 +99,7 @@ export const Login = () => {
                     <div className="mt-3">
                       <p className="mb-0  text-center">
                         Don't have an account?{" "}
-                        <Link to="/signup">Sign in</Link>
+                        <Link to="/signup">Sign up</Link>
                       </p>
                     </div>
                   </div>

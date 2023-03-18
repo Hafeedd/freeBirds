@@ -36,6 +36,15 @@ export const updateMissingChild = async (req,res,next) =>{
     }
 };
 
+export const  searchfac = async (req,res,next) =>{
+    try{
+        const searchfac = await missing_child.findOne({aws_face_id:req.params.id})
+        res.status(200).json(searchfac);
+    }catch(err){
+        next(createError(400,"No missing child posted with this face id"))
+    }
+}
+
 //delete missing child
 export const deleteMissingChild = async (req,res,next) =>{
     try{
@@ -73,13 +82,13 @@ export const MissingChilds = async (req,res,next) =>{
     }
 };
 
-//view missing children usinf aws-face-id
-export const searchMCByFaceId = async (req,res,next) =>{
-    const face_id = req.query.id;
-    try{
-        const foundChild = await missing_child.find({aws_face_id:face_id})
-        res.status(200).json(foundChild);
-    }catch(err){
-        next(createError(400,"Failed to get missing child."))
-    }
-};
+// //view missing children usinf aws-face-id
+// export const searchMCByFaceId = async (req,res,next) =>{
+//     const face_id = req.query.id;
+//     try{
+//         const foundChild = await missing_child.find({aws_face_id:face_id})
+//         res.status(200).json(foundChild);
+//     }catch(err){
+//         next(createError(400,"Failed to get missing child."))
+//     }
+// };

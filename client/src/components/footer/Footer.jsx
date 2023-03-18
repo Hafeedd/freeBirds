@@ -41,7 +41,7 @@ const Footer = () => {
 
   {/* <!-- Copyright --> */}
   <div className="text-center p-3 bg-dark-50">
-    © 2020 Copyright:
+    © 2023 Copyright:
     <a className="text-white" href="#">Free birds.com</a>
   </div>
   {/* <!-- Copyright --> */}

@@ -1,8 +1,11 @@
 import React from 'react'
 import FbNavbar from '../../components/fbnavbar/FbNavbar'
 import { FaHandHoldingHeart ,FaHandHoldingUsd,FaSearch} from 'react-icons/fa';
-import Chart from '../../components/chart/Chart';
+import { useNavigate } from 'react-router-dom';
+
 const Org = () => {
+
+  const navigate=useNavigate();
   return (
     <>
     
@@ -16,7 +19,7 @@ const Org = () => {
         </div>  */}
         <h2 className="text-black-50">Organisation panel</h2>
         <br/>
-        <Chart/>
+       {/*  <Chart/> */}
         <div className=" row justify-content-center text-black justify-content-between pt-2">
               
                 <div  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
@@ -25,16 +28,16 @@ const Org = () => {
                   <h3>View donation details </h3>
                   <p>help organisation by providing support</p>
                 </div>
-                <div  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-2">
+                <div onClick={() => navigate("/addspsr/")}  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-2">
                   {" "}
                   <i className="w-10"><FaSearch/></i>
-                  <h3>add sponsor</h3>
+                  <h3>Add sponsor</h3>
                   <p>help to find missing child</p>
                 </div>
                 <div  className="shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-1">
                   {" "}
                   <i className="w-10"><FaHandHoldingUsd/></i>
-                  <h3>case status</h3>
+                  <h3>Case status</h3>
                   <p>help organisation by providing financial support</p>
                 </div>
         </div>
@@ -44,7 +47,7 @@ const Org = () => {
                 <div  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
                   {" "}
                   <i className="w-10"><FaHandHoldingHeart/></i>
-                  <h3>donation details</h3>
+                  <h3>Donation details</h3>
                   <p>help organisation by providing support</p>
                 </div>
                 <div  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-2">

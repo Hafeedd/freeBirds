@@ -29,14 +29,15 @@ const Addorg = () => {
       name:newOrg.name,
       email:newOrg.email,
       phone:newOrg.phone,
-      address:newOrg.address,
+      district:newOrg.District,
+      state:newOrg.State,
       password:newOrg.password,
-      })
+      },{withCredentials: true})
       navigate("/login")
       console.log(res)
 
     }catch (err){
-      console.log(err.response.data)
+      console.log(err.response)
       setError(true)
       setErrorM(err.response.data.message)
     }
@@ -125,7 +126,7 @@ const Addorg = () => {
                         controlId="formBasicCheckbox"
                       ></Form.Group> */}
                       <div className="d-grid">
-                      <input className="bg-primary text-white"
+                      <input className="bg-danger rounded-2 border-danger text-white"
                       type="submit" value="Create Account for organisation"
                      />
                         {/* <Button variant="danger" type="submit">

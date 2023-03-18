@@ -8,44 +8,51 @@ import{Chart as ChartJS,
    Legend,
    Tooltip
 } from 'chart.js';
+import useFetch from '../../useFetch/usefetch';
+
 
 ChartJS.register(
-    LineElement,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    Legend,
-    Tooltip
- 
-)
-const Chart = () => {
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Legend,
+  Tooltip
+  
+  )
+  const Chart = () => {
+    const {datas,error,loading} = useFetch('http://localhost:8800/api/auth/loginInfo')
+    
+    
     const data={
-        labels:['jan','feb','mar','apr','may','june','july','aug','sep','oct','nov','dec'],
-        datasets:[{
-            label:'website users/month',
-            data:[6,3,10],
-            backgroundColor:'black',
-            borderColor:'#CC2445',
-            
-            pointBorderColor:'black',
-            fill:true,
-            tension:0.4
-        }]
+      labels:['jan','feb','mar','apr','may','june','july','aug','sep','oct','nov','dec'],
+      datasets:[{
+        label:'website users/month',
+        data:datas.months,
+        backgroundColor:'black',
+        borderColor:'#CC2445',
+        
+        pointBorderColor:'black',
+        fill:true,
+        tension:0.4
+      }]
     }
-const options={
-    plugins:{
+    const options={
+      plugins:{
         legend:true
-    },
-    scales:{
+      },
+      scales:{
         y:{
-           // min:3,
-           // max:6
+          // min:3,
+          // max:6
         }
+      }
     }
-}
 
-  return (
-    <div className='container align-content-end me-0 ms-5'>
+    
+    
+    return (
+      <div className='container align-content-end ps-5 me-0 ms-5'>
         <h3>chart</h3>
         <div style={{width:'600px',height:'300px'}} >
             <Line data={data} options={options}></Line>

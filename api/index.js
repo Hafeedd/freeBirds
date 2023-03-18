@@ -28,8 +28,8 @@ mongoose.connection.on("disconnected",()=>{
 
 //middleware
 
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 app.use(cookieParser())
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 app.use(express.json());
 
 app.use("/api/auth",orgRegR);
@@ -38,6 +38,7 @@ app.use("/api/education",educationR);
 app.use("/api/missingChild",missingChildR);
 app.use("/api/service",serviceR)
 app.use("/api/searchMC",searchR)
+
 
 
 app.use((err,req,res,next)=>{

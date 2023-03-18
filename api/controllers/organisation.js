@@ -9,10 +9,13 @@ export const registerOrg = async (req,res,next) =>{
     const hash = bcrypt.hashSync(req.body.password,salt);
     try{
         const org = new Organisation({
-            password:hash,
             ...req.body,
+            password:hash,
         })
+        console.log(org)
+        console.log("saving org")
         await org.save()
+        console.log("org saved")
         const {password,...others} = org._doc;
         res.status(200).json(others)
         try{

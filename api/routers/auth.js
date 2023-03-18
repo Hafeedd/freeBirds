@@ -1,5 +1,5 @@
 import express from "express";
-import { login } from "../controllers/auth.js";
+import { login, loginfo } from "../controllers/auth.js";
 import { deleteOrg, getAllOrgs, getOrg, registerOrg, updateOrg } from "../controllers/organisation.js";
 import { deleteUser, getAllUsers, getUser, registerUser, updateUser } from "../controllers/user.js";
 import { verifyAdmin, verifyOrg, verifyOrgWithId, verifyUser, verifyUserWithId } from "../utils/verifyToken.js";
@@ -8,6 +8,7 @@ const route = express.Router()
 
 //login
 route.post("/login",login);
+route.get("/loginInfo",loginfo)
 
 //organisation
 route.post("/registerOrg",verifyAdmin ,registerOrg);
@@ -19,7 +20,7 @@ route.get("/getOrg/",getAllOrgs)
 //User
 route.post("/registerUser", registerUser);
 route.put("/updateUser/:id",verifyUserWithId ,updateUser)
-route.delete("/deleteUser/:id"/* ,verifyUserWithId  */,deleteUser)
+route.post("/deleteUser/:id"/* ,verifyUserWithId  */,deleteUser)
 route.get("/getUser/:id",getUser)
 route.get("/getUser/",getAllUsers)
 

@@ -1,9 +1,11 @@
 import React from 'react'
 import {FaBookOpen,FaCcApplePay, FaGooglePay, FaGraduationCap,FaHandHoldingUsd,FaPen} from 'react-icons/fa';
-import FbNavbar from '../fbnavbar/FbNavbar'; 
+
 import {MdFastfood ,MdOutlineFastfood} from "react-icons/md";
 
 import { GiClothes } from "react-icons/gi";
+import FbNavbar from '../fbnavbar/FbNavbar';
+
 
 const DonationCh = () => {
 
@@ -17,12 +19,14 @@ const DonationCh = () => {
     fontSize: "50px"
   }
   const smStyle = {
-    color: "grey",
+    color: "#DC3545",
     fontSize: "30px"
   }
   return (
     <>
-    <FbNavbar type="donationch"/> 
+      <FbNavbar type="donationch"/>  
+
+   
     <div id="features" className="text-center mt-5">
 
     <div className="container">

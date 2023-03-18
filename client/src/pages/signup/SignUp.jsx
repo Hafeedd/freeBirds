@@ -1,9 +1,8 @@
 import React from 'react';
-import axios from "axios";
+import axios from 'axios';
 import { useState } from 'react';
 import { Col, Row, Container, Card, Form } from 'react-bootstrap';
 import { Link, useNavigate } from "react-router-dom";
-
 
 
 const SignUp = () => {
@@ -12,6 +11,8 @@ const SignUp = () => {
     email:'',
     phone:'',
     password:'',
+    state:'',
+    city:'',
 
   });
 
@@ -51,7 +52,7 @@ const SignUp = () => {
       <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
-            <Card className="px-4">
+            <Card className="px-4 shadow">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
                 <img 
@@ -85,11 +86,26 @@ const SignUp = () => {
                         <Form.Control type="tel" placeholder="Enter phone number" 
                         onChange={handleChange} name="phone" value={newUser.phone}/>
                       </Form.Group>
+                      
+                      <Form.Group className="mb-3" controlId="formBasicPhone">
+                        <Form.Label className="text-center">
+                          Phone Number
+                        </Form.Label>
+                        <Form.Control type="tel" placeholder="Enter State" 
+                        onChange={handleChange} name="state" value={newUser.state}/>
+                      </Form.Group>
+                      
+                      <Form.Group className="mb-3" controlId="formBasicPhone">
+                        <Form.Label className="text-center">
+                          Phone Number
+                        </Form.Label>
+                        <Form.Control type="tel" placeholder="Enter city" 
+                        onChange={handleChange} name="city" value={newUser.city}/>
+                      </Form.Group>
 
                       <Form.Group
                         className="mb-3"
-                        controlId="formBasicPassword"
-                      >
+                        controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password" 
                         onChange={handleChange} name="password" value={newUser.password} />
@@ -106,7 +122,7 @@ const SignUp = () => {
                         controlId="formBasicCheckbox"
                       ></Form.Group>
                       <div className="d-grid">
-                      <input className="bg-primary text-white"
+                      <input className="bg-danger rounded-2 border-danger text-white"
                       type="submit" value="Create account"
                      />
                        {/*  <Button variant="primary" type="submit" onClick={handlesubmit()}>
@@ -117,7 +133,7 @@ const SignUp = () => {
                     <div>{error && <span>{errorM}</span>}</div>
                     <div className="mt-3">
                       <p className="mb-0  text-center">
-                        Already have an account??{' '}
+                        Already have an account?{' '}
                         <Link to="/login">Sign in</Link>
                       </p>
                     </div>

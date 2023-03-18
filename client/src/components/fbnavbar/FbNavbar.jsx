@@ -1,10 +1,12 @@
-
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useNavigate } from 'react-router-dom';
+import logo from "./fblogo.jpg"
+// import SearchMc from "./pages/searchchild/SearchMC";
 /* import fblogo from "/fblogo.jpg"
 import logo from ".../images/fblogo.jpg" */
 /* import SignUp from '../../pages/signup/SignUp'; */
@@ -14,9 +16,10 @@ const FbNavbar = ({type}) => {
   const navigate = useNavigate();
   /* const signup="signup";
   const login="login";
-
  */
-const logo="fblogo.jpg"
+
+
+
 
   return (
     <>
@@ -55,11 +58,11 @@ const logo="fblogo.jpg"
               menuVariant="dark" 
               style={{ color: 'rgb(245, 245, 245)' }}>
               
-              <NavDropdown.Item onClick={() => navigate("/login")} >View</NavDropdown.Item>
-              <NavDropdown.Item onClick={() => navigate("/login")}>Add</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => navigate("/SearchMc")} >View</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => navigate("/SearchMc")}>Add</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={() => navigate("/login")}>
-                Case status
+              Case status
               </NavDropdown.Item>
             </NavDropdown>
             
@@ -72,7 +75,7 @@ const logo="fblogo.jpg"
               className="me-2"
               aria-label="Search"
             /> */}
-{ (type!== "admin" && type!== "user")&&type!== "org" ? <Button 
+            { (type!== "admin" && type!== "user")&&type!== "org" ? <Button 
                 onClick={() => navigate("/login")}
                 variant="danger" 
                 className='m-2 rounded-4' 

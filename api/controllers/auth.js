@@ -2,13 +2,27 @@ import bcrypt from "bcrypt";
 import Login from "../models/login.js";
 import { createError } from "../utils/error.js";
 import {encrypt} from "../utils/cryto.js"
+import loginInfo from "../models/loginInfo.js"
+import { Logins } from "../config/loginInfos.js";
 
+
+//login info
+export const loginfo = async (req,res,next) =>{
+    var date = new Date()
+    var yy = date.getFullYear();
+    try{
+        const info = await loginInfo.findOne({year:yy});
+        const {_id,...others} = info._doc;
+        res.status(200).json({...others});
+    }catch(err){
+        next(createError(303,"Something went wrong!"))
+    }
+}
 
 // Login
 export const login = async (req,res,next) =>{
     const name = req.body.username;
     try{
-        console.log("authentication started")
         const user = await Login.findOne({username:name});
         if(!user) return next(createError(404,"User not found"));
         
@@ -18,17 +32,15 @@ export const login = async (req,res,next) =>{
         
         // const token = jwt.sign({id:user._id,type:user.type},process.env.JWT) 
         const data = JSON.stringify({id:user._id,type:user.type})
-        // console.log(data)
         const token = await encrypt(data)
-        console.log("token"+token)
 
         const {password,type,...other} = user._doc;
         res.cookie("access_token",token,{
             httpOnly:true,
             sameSite: 'strict',
             path: '/',
-            expires: new Date(new Date().getTime() + 30 * 60 * 60 * 1000 ),
         }).status(200).json({...other,token})
+        Logins()
 
     }catch(err){
         next(err)

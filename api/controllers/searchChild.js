@@ -8,14 +8,13 @@ export const detectFace = (req,res) =>{
     }
 
     search_face(obj, (data) => {
-        if(data.FaceMatches)
+        if(!data)
         {
-            console.log("err")
             res.send(data)
         }
         else{
             res.send(data);
-            console.log("found matching face")}
+        }
     });
 }
 

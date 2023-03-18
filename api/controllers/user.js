@@ -8,7 +8,7 @@ export const registerUser = async (req,res,next) =>{
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password,salt); 
     try{
-        const users = await Public.findOne({name:req.body.name}) || false 
+        let users = await Public.findOne({name:req.body.name}) || false 
         const email = await Public.findOne({email:req.body.email}) || false
         if(users){
             next(createError(404,"User name already exists."))
@@ -28,10 +28,9 @@ export const registerUser = async (req,res,next) =>{
         _id:user._id,
         username:req.body.name,
         password:hash,
-        type:{isUser:true}
+        type:{isUser:true},
         }) 
         await userLogin.save()
-        console.log("saved")
     }}catch(err){
         next(createError(404,"failed to create User."))
     }
@@ -74,6 +73,7 @@ export const deleteUser = async (req,res,next) => {
 export const getUser = async (req,res,next) => {
     try{
         const user = await Public.findById(req.params.id);
+        console.log(user)
         const {password,_id,...others} = user._doc;
         res.status(200).json({...others});
     }catch(err){
@@ -84,8 +84,13 @@ export const getUser = async (req,res,next) => {
 // get Publics
 export const getAllUsers = async (req,res,next) => {
     try{
-        const users = await Public.find(); 
-        res.status(200).json(users);
+        const users = await Public.find();
+        let a = []
+        for(let i=0;i<users.length;i++){
+        var {password,...others} = users[i]._doc;
+        a[i] = {...others}
+        }
+        res.status(200).json(a);
     }catch(err){
         next(createError(400,"Publics not found."))
     }
