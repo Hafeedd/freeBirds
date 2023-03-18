@@ -1,9 +1,9 @@
 import express from "express"
 import { detectFace } from "../controllers/searchChild.js";
-import { verifyAdmin/* , verifyUser  */} from "../utils/verifyToken.js";
+import {/*  verifyAdmin, */ verifyUser } from "../utils/verifyToken.js";
 
 const routers = express.Router();
 
-routers.post("/",verifyAdmin,detectFace)
+routers.post("/",verifyUser,detectFace)
 
 export default routers;

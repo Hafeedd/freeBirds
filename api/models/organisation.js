@@ -23,11 +23,12 @@ const orgSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    phoneno:{
+    phone:{
         type: Number,
         // required: true,
         unique: true,
         min:10,
+        max:10,
     },
 },
 {timestamps:true}

@@ -4,7 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 const ImgSlider = () => {
     
   return (
-    <Carousel className='h-75 z-index-1'>
+    <Carousel className='h-75 z-index-1 '>
       <Carousel.Item>
         <img
           className="d-block w-100"
@@ -12,10 +12,10 @@ const ImgSlider = () => {
           src="images/slide1.jpg"
           alt="First slide"
         />
-        <Carousel.Caption className='pl-3 '>
+{/*         <Carousel.Caption className='pl-3 '>
           <h3>First slide label</h3> 
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
+        </Carousel.Caption> */}
       </Carousel.Item>
 
       <Carousel.Item className>
@@ -25,12 +25,12 @@ const ImgSlider = () => {
           alt="Third slide"
         />
 
-        <Carousel.Caption className='text-light d-flex justify-content-center align-items-center flex-column text-center'>
+{/*         <Carousel.Caption className='text-light d-flex justify-content-center align-items-center flex-column text-center'>
           <h3>second slide label</h3>
           <p>
             Praesent commodo cursus magna, vel scelerisque nisl consectetur.
           </p>
-        </Carousel.Caption>
+        </Carousel.Caption> */}
       </Carousel.Item>
       <Carousel.Item>
         <img
@@ -39,12 +39,12 @@ const ImgSlider = () => {
           alt="Third slide"
         />
 
-        <Carousel.Caption>
+     {/*    <Carousel.Caption>
           <h3 className=' font-monospace'>Find missing child with us</h3>
           <p>
             Praesent commodo cursus magna, vel scelerisque nisl consectetur.
           </p>
-        </Carousel.Caption>
+        </Carousel.Caption> */}
       </Carousel.Item>
       
     </Carousel>

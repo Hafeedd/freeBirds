@@ -24,6 +24,7 @@ export const Login = () => {
       username:newlogin.name,
       password:newlogin.password,
     },{withCredentials: true});
+    console.log("token"+res.data.token)
       dispatch({type: "LOGIN_SUCCESS", payload: res.data.token })
       console.log(res) 
       navigate("/searchMC")
@@ -34,7 +35,7 @@ export const Login = () => {
     }
   }
     const handleChange = (e) => {
-      setNewLogin({...newlogin, [e.target.name]: e.target.value});/* ((prev) => ({ ...prev, [e.target.name]: e.target.value})); */
+      setNewLogin({...newlogin, [e.target.name]: e.target.value});
     }
 
   return (
@@ -45,8 +46,8 @@ export const Login = () => {
         <Row className="vh-100 d-flex justify-content-center align-items-center border-2 border-danger">
           <Col md={8} lg={6} xs={12}>
             {/* <div className="border border-2 border-danger"></div> */}
-            <Card className=" shadow-lg border-5 border-danger ">
-            <div className="border border-2 border-danger"></div>
+            <Card className=" shadow-lg border-5 border-top border-danger ">
+            {/* <div className="border border-2 border-danger"></div> */}
               <Card.Body>
                 <div className="mb-3 mt-md-4 align-items-center">
                   {/* <h2 className="fw-bold mb-2 text-uppercase ">Brand</h2> */}

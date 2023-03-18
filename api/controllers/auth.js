@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 import Login from "../models/login.js";
 import { createError } from "../utils/error.js";
-import jwt from "jsonwebtoken";
 import {encrypt} from "../utils/cryto.js"
 
 
@@ -19,8 +18,9 @@ export const login = async (req,res,next) =>{
         
         // const token = jwt.sign({id:user._id,type:user.type},process.env.JWT) 
         const data = JSON.stringify({id:user._id,type:user.type})
-        console.log(data)
-        const token = encrypt(JSON.stringify({id:user._id,type:user.type}))
+        // console.log(data)
+        const token = await encrypt(data)
+        console.log("token"+token)
 
         const {password,type,...other} = user._doc;
         res.cookie("access_token",token,{

@@ -1,10 +1,9 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
 const INITIAL_STATE = {
     user : JSON.parse(localStorage.getItem("user")) || null,
     error : null,
     loading : false,
-    type : null,
 };
 
 export const AuthContext = createContext(INITIAL_STATE);
@@ -16,28 +15,27 @@ const AuthReducer = (state, action) => {
             user : null,
             loading : true,
             error : null,
-            type : null,
+      
         };
         case "LOGIN_SUCCESS":
         return {
             user : action.payload,
             loading : false,
             error : null,
-            type : action.type,
         };
         case "LOGIN_FAILURE":
         return {
             user : null,
             loading : true,
             error : action.payload,
-            type : null,
+      
         };
         case "LOGOUT":
       return {
         user: null,
         loading: false,
         error: null,
-        type : null,
+  
       };
     default :
         return state;
@@ -49,9 +47,9 @@ export const AuthContextProvider = ({ children }) => {
 
     // const user = jwt.sign({user: state.user,type: state.type},process.env.JWT)
   
-    useEffect(() => {
-      localStorage.setItem("user",JSON.stringify(state.user) || null );
-    }, [state.user]);
+    // useEffect(() => {
+    //   localStorage.setItem("user",JSON.stringify(state.user) || null );
+    // }, [state.user]);
   
     return (
       <AuthContext.Provider
