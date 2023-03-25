@@ -11,7 +11,7 @@ export const Login = () => {
     password: '',
   });
 
-  const { error, dispatch } = useContext(AuthContext);
+  const { user,error, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate()
   
@@ -26,7 +26,7 @@ export const Login = () => {
     },{withCredentials: true});
     console.log("token"+res.data.token)
       dispatch({type: "LOGIN_SUCCESS", payload: res.data.token })
-      console.log(res) 
+      console.log(user)
       navigate("/")
     }catch (err) {
       console.log(err)
@@ -67,7 +67,7 @@ export const Login = () => {
                         <Form.Label className="text-center">
                           Name
                         </Form.Label>
-                        <Form.Control type="text" placeholder="Enter name"  
+                        <Form.Control type="text" placeholder="Enter name"  className='shadow border-0'
                         onChange={handleChange} name="name" value={newlogin.name}/>
                       </Form.Group>
 
@@ -76,7 +76,7 @@ export const Login = () => {
                         controlId="formBasicPassword"
                       >
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" 
+                        <Form.Control type="password" placeholder="Password" className='shadow border-0'
                         onChange={handleChange} name="password" value={newlogin.password}/>
                       </Form.Group>
                       <Form.Group

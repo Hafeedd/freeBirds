@@ -10,7 +10,7 @@ export const encrypt = async (text) => {
 export const decrypts = async (text) => {
         var decrypted = crypto.AES.decrypt(text, process.env.JWT)
         .toString(crypto.enc.Utf8)
-        console.log(JSON.parse(decrypted))
+        // console.log(JSON.parse(decrypted))
         return JSON.parse(decrypted)
 }
 

@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import React from 'react';
 const INITIAL_STATE = {
     user : JSON.parse(localStorage.getItem("user")) || null,
@@ -47,9 +47,9 @@ export const AuthContextProvider = ({ children }) => {
 
     // const user = jwt.sign({user: state.user,type: state.type},process.env.JWT)
   
-    // useEffect(() => {
-    //   localStorage.setItem("user",JSON.stringify(state.user) || null );
-    // }, [state.user]);
+    useEffect(() => {
+      localStorage.setItem("user",JSON.stringify(state.user) || null );
+    }, [state.user]);
   
     return (
       <AuthContext.Provider

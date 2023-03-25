@@ -21,20 +21,40 @@ import AddSpr from './components/forms/AddSpr';
 import ViewUser from './components/table/ViewUser';
 import Feedback from './components/forms/Feedback';
 import AboutUs from './components/aboutUs/AboutUs';
-
+import PostAwns from './components/awareness/PostAwns';
+import ViewAwns from './components/awareness/ViewAwns';
+import FeedbackList from './components/table/FeedbackList';
+import MCList from './components/table/MCList';
+import ViewNeeds from './components/orgNeeds/ViewNeeds';
+import OrgNeeds from './components/orgNeeds/OrgNeeds';
+/* import UsrProfile from './components/UserProfile/UsrProfile';
+ */
 
 
 function App() {
-  const ProtectedRoute = ({children}) => {
+  const ProtectedRouteUser = ({children}) => {
     const key = 'gzLxc16cnBhScdScGijOEXdAyv2XkgR5TRqYPK5FH7Q='
     const {user} = useContext(AuthContext);
+    if(user != null){
     const data = CryptoJS.AES.decrypt(user,key);
-    const token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
-    console.log("token"+token)
+    var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));}
     if( user === null || !token.type.isUser){
       return <Navigate to="/login"/>;
     }
     return children
+  }
+
+  const ProtectedRouteOrg = ({children}) => {
+    const key = 'gzLxc16cnBhScdScGijOEXdAyv2XkgR5TRqYPK5FH7Q='
+    const {user} = useContext(AuthContext);
+    if(user != null){
+      const data = CryptoJS.AES.decrypt(user,key);
+      var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
+      console.log(token.type.isOrg)}
+      if (user === null || !token.type.isOrg){
+      return <Navigate to="/login"/>;
+    }
+      return children
   }
 
   return (
@@ -44,10 +64,10 @@ function App() {
               <Route path="/" element={<Home/>}/>
               <Route path="/login/" element={<Login/>}/>
               <Route path="/signup/" element={<SignUp/>}/>
-              {/* <Route path="/searchMc/" index element={
-                <ProtectedRoute>
+              <Route path="/searchMc/" index element={
+                <ProtectedRouteUser>
                   <SearchMc/>
-                </ProtectedRoute>}/> */}
+                </ProtectedRouteUser>}/>
               <Route path="/searchMc/" element={<SearchMc/>}/>
               <Route path="/admin/" element={<Admin/>}/>
               <Route path="/aboutUs/" element={<AboutUs/>}/>
@@ -58,7 +78,17 @@ function App() {
               <Route path="/user/" element={<User/>}/>
               <Route path="/addspsr/" element={<AddSpr/>}/>
               <Route path="/viewUser" element={<ViewUser/>}/>
+{/*               <Route path="/UserProfile" element={<UsrProfile/>}/> */}
+              <Route path="/postAwareness"  index element={
+                <ProtectedRouteOrg>
+                <PostAwns/>
+                </ProtectedRouteOrg>}/>
+              <Route path="/viewAwareness" element={<ViewAwns/>}/>
+              <Route path="/viewNeeds" element={<ViewNeeds/>}/>
+              <Route path="/OrgNeeds" element={<OrgNeeds/>}/>
               <Route path="/feedback" element={<Feedback/>}/>
+              <Route path="/feedbackList" element={<FeedbackList/>}/>
+              <Route path="/McList" element={<MCList/>}/>
               <Route path='*' element={<NotFound/>}/>
              </Routes>
          </BrowserRouter> 

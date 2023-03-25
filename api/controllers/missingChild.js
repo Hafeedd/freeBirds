@@ -1,6 +1,7 @@
 import missing_child from "../models/missing_child.js";
 import { createError } from "../utils/error.js";
-import { deleteface, insertFace } from "./searchChild.js";
+import { deleteFace } from "../utils/searchChild.js";
+import { /* deleteface, */ insertFace } from "./searchChild.js";
 // import { upload } from "../utils/uploader.js";
 
 //create missing_child
@@ -56,7 +57,7 @@ export const deleteMissingChild = async (req,res,next) =>{
             await missing_child.findByIdAndDelete(req.params.id)
             res.status(200).json("Deleted the missing chiled.");
         }
-    })    
+    })
     }catch(err){
         next(createError(400,"Failed to delete missing child."))
     }

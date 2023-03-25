@@ -25,7 +25,7 @@ const Users = () => {
           if(!res.data.FaceId){
             return("Matching face not found")
           }
-          console.log(res)
+          // console.log(res)
           const data = await axios.get(`http://localhost:8800/api/missingChild/faceid/${res.data.FaceId}`,{withCredentials: true})
           setNewRes({photo:data.data.photo , details:data.data})
 

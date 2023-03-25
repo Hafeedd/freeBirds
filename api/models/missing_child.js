@@ -13,6 +13,10 @@ const misschildSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    phoneno:{
+        type: Number,
+        required: true,
+    },
     state:{
         type: String,
         required: true,

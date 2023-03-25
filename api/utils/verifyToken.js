@@ -9,9 +9,7 @@ export const verifyToken = async (req,res,next) => {
     if(!token){
         return next(createError(404,"You are not autherized!"));
     }
-    console.log("decrypting token")
         const user = await decrypts(token)
-            console.log("token decrypted")
             if(!user) return next(createError(403, "Token is not valid!"));
             req.user = user;
             next();
@@ -20,7 +18,6 @@ export const verifyToken = async (req,res,next) => {
 // verify Admin
 export const verifyAdmin = async (req,res,next) =>{
     await verifyToken(req,res,next,()=>{
-        console.log("checking admin status")
         if(req.user.type.isAdmin){
             next()
         }else {

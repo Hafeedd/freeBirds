@@ -14,6 +14,7 @@ const Home = () => {
       <Features className=" " />
       <br/>
       <AboutUs/>
+      {/* <Team/> */}
       <Footer/>
     </div>
   )

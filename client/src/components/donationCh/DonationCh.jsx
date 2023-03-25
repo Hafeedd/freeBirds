@@ -5,9 +5,11 @@ import {MdFastfood ,MdOutlineFastfood} from "react-icons/md";
 
 import { GiClothes } from "react-icons/gi";
 import FbNavbar from '../fbnavbar/FbNavbar';
-
+import { useNavigate } from 'react-router-dom';
 
 const DonationCh = () => {
+ 
+  const navigate = useNavigate();
 
   const org = {
     id: "89077",
@@ -40,14 +42,14 @@ const DonationCh = () => {
       <h4 className="text-black-50">Choose your donation method</h4>
       <br/>
       
-      <div className=" row justify-content-center text-black justify-content-between pt-2">
+      <div className=" row justify-content-center text-black justify-content-between pt-5 gap-2">
             
               <div  className=" shadow col-xs-6 col-md-3 justify-content-between bg-white rounded-3 p-4 text-black z-index-1">
                 {" "}
                 <i ><FaHandHoldingUsd style={styles}/></i>
                 <h3>Monitory</h3>
                 <p>Payment options</p>
-                <i className=""><FaGooglePay style={smStyle}/></i>
+                <i onClick={() => navigate("https://pay.google.com/")} className=""><FaGooglePay style={smStyle}/></i>
                 <br />
                 <i className=""><FaCcApplePay style={smStyle}/></i>
                 

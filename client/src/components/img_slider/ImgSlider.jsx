@@ -8,7 +8,7 @@ import Slide3 from "./slide3.jpg"
 const ImgSlider = () => {
     
   return (
-    <Carousel className='h-75 z-index-1 indicators-false ' controls={false} indicators={false}    >
+    <Carousel fluid="lg" className='h-75 z-index-1 indicators-false  ' controls={false} indicators={false}    >
       <Carousel.Item interval={1000}>
         <img
           className="d-block w-100"

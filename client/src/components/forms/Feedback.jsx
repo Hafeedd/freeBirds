@@ -1,9 +1,41 @@
 
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { Form, Button ,Col, Row, Container, Card} from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 
 function Feedback() {
+
+  const navigate = useNavigate()
+
+  const [newFeedback , setFeedback] = useState({
+    email: '',
+    feedback:'',
+  });
+
+  const [error,setError] = useState(false);
+  const [errorM,setErrorM] = useState(undefined);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try{
+      const res = await axios.post('http://localhost:8800/api/feedback/',{
+      email:newFeedback.email,
+      feedback:newFeedback.feedback,
+      })
+      navigate(-1)
+    }catch (err){
+      console.log(err.response.data)
+      setError(true)
+      setErrorM(err.response.data.message)
+    }
+    
+  }
+
+  const handleChange = (e) =>{
+    setFeedback({...newFeedback,[e.target.name]:e.target.value})
+  }
   
 
  	return (
@@ -30,8 +62,7 @@ function Feedback() {
                 <div className="mb-3">
    
 		
-          <Form onSubmit="">
-
+          <Form onSubmit={handleSubmit}>
             {/* email */}
             <Form.Group className="mb-3">
               <Form.Label className='text-center'>Email Adress</Form.Label>
@@ -40,6 +71,7 @@ function Feedback() {
                className='shadow border-0'
                 type='email'
                 placeholder='Enter email'
+                onChange={handleChange} name="email" value={newFeedback.email} 
                 required
               />
             </Form.Group>
@@ -52,12 +84,14 @@ function Feedback() {
                 as='textarea'
                 
                 rows={3}
+                onChange={handleChange} name="feedback" value={newFeedback.feedback} 
                 required
               />
             </Form.Group>
 
-            <Button type='submit'>submit</Button>
-          </Form>  
+            <Button type='submit' variant='danger'>submit</Button>
+          </Form> 
+          <div>{error && <span>{errorM}</span>}</div> 
 
 
 

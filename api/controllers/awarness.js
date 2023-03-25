@@ -1,19 +1,21 @@
 import Awarness from "../models/awarness.js"
+import Organisation from "../models/organisation.js";
 import { createError } from "../utils/error.js"
 import { verifyToken } from "../utils/verifyToken.js";
 
 //create awarness
 export const createAwarness = async (req,res,next) =>{
     try{
-        verifyToken(async(req,res)=>{
+        const data = await Organisation.findById(req.user.id)
         const awarness = new Awarness({
+            orgState:data.state,
+            orgCity:data.district,
+            orgName:data.name,
             o_id:req.user.id,
             ...req.body,
         })
-    
         await awarness.save();
-        res.status(200).json(awarness);
-    })    
+        res.status(200).json(awarness);  
     }catch(err){
     next(createError(400,"Failed to create awarness."))
 } 
@@ -44,7 +46,12 @@ export const getAwarness = async (req,res,next) =>{
 export const getAllAwarness = async (req,res,next) =>{
     try{
         const awarness = await Awarness.find()
-        res.status(200).json(awarness);
+        let a = []
+        for(let i=0;i<awarness.length;i++){
+        var {o_id,_id,...others} = awarness[i]._doc;
+        a[i] = {...others}
+        }
+        res.status(200).json(a);
     }catch(err){
     next(createError(400,"Failed to get awarness."))
 } 

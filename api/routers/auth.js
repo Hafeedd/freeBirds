@@ -20,7 +20,7 @@ route.get("/getOrg/",getAllOrgs)
 //User
 route.post("/registerUser", registerUser);
 route.put("/updateUser/:id",verifyUserWithId ,updateUser)
-route.post("/deleteUser/:id"/* ,verifyUserWithId  */,deleteUser)
+route.delete("/deleteUser/:id"/* ,verifyUserWithId  */,deleteUser)
 route.get("/getUser/:id",getUser)
 route.get("/getUser/",getAllUsers)
 

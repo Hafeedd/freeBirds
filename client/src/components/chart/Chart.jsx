@@ -43,8 +43,8 @@ ChartJS.register(
       },
       scales:{
         y:{
-          // min:3,
-          // max:6
+           min:1,
+           
         }
       }
     }

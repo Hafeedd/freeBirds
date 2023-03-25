@@ -20,13 +20,13 @@ const Org = () => {
         <h2 className="text-black-50">Organisation panel</h2>
         <br/>
        {/*  <Chart/> */}
-        <div className=" row justify-content-center text-black justify-content-between pt-2">
+        <div className=" row justify-content-center ms-2 me-2 text-black pt-2 justify-content-around">
               
                 <div  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
                   {" "}
                   <i className="w-10"><FaHandHoldingHeart/></i>
-                  <h3>View donation details </h3>
-                  <p>help organisation by providing support</p>
+                  <h3>Awarness details </h3>
+                  <p>Post Awarness for people</p>
                 </div>
                 <div onClick={() => navigate("/addspsr/")}  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-2">
                   {" "}
@@ -38,17 +38,17 @@ const Org = () => {
                   {" "}
                   <i className="w-10"><FaHandHoldingUsd/></i>
                   <h3>Case status</h3>
-                  <p>help organisation by providing financial support</p>
+                  <p>mange case status</p>
                 </div>
         </div>
         <br/>
-        <div className=" row justify-content-center text-black justify-content-between pt-2">
+        <div className=" row justify-content-center ms-2 me-2 text-black justify-content-around pt-2">
           
-                <div  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
+                <div onClick={() => navigate("/feedback")}   className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
                   {" "}
                   <i className="w-10"><FaHandHoldingHeart/></i>
-                  <h3>Donation details</h3>
-                  <p>help organisation by providing support</p>
+                  <h3>Feedback</h3>
+                  <p>Share feedback for our team</p>
                 </div>
                 <div  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-2">
                   {" "}
@@ -59,8 +59,8 @@ const Org = () => {
                 <div  className="shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-1">
                   {" "}
                   <i className="w-10"><FaHandHoldingUsd/></i>
-                  <h3>Support org</h3>
-                  <p>help organisation by providing financial support</p>
+                  <h3>Needs</h3>
+                  <p>Post organisational needs from people</p>
                 </div>
         </div>
       </div>

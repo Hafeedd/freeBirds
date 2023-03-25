@@ -9,6 +9,7 @@ import educationR from "./routers/education.js";
 import missingChildR from "./routers/missingChild.js";
 import serviceR from "./routers/service.js";
 import searchR from "./routers/searchChild.js"
+import feedbackR from "./routers/feedbacks.js"
 
 const app = express()
 dotenv.config()
@@ -38,8 +39,7 @@ app.use("/api/education",educationR);
 app.use("/api/missingChild",missingChildR);
 app.use("/api/service",serviceR)
 app.use("/api/searchMC",searchR)
-
-
+app.use("/api/feedback",feedbackR)
 
 app.use((err,req,res,next)=>{
     const errStatus = err.status || 500;

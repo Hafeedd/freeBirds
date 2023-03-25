@@ -10,9 +10,10 @@ const ViewUser = () => {
   const {datas,error,loading} = useFetch("http://localhost:8800/api/auth/getUser/")
 
   const deleteUser = async (e,id) =>{
-    console.log(e)
-    const res = await axios.post(`http://localhost:8800/api/auth/deleteUser/${id}`);
+
+    const res = await axios.delete(`http://localhost:8800/api/auth/deleteUser/${id}`,{withCredentials: true});
     console.log(res);
+    window.location.reload(true)
   }
 
 
@@ -39,9 +40,9 @@ const ViewUser = () => {
                     </tr>
                   </thead>
                   {loading ? (
-                    "Loading Please Wait."
-                    ):(
-                    <>{datas.map((datas,i)=>(
+                    "Loading Please Wait..."
+                    ) : (
+                    <> {datas.map((datas,i)=>(
                   <tbody key={i} >
                     <tr>
                       <td>{i+1}</td>
@@ -49,12 +50,11 @@ const ViewUser = () => {
                       <td>{datas.phone}</td>
                       <td>{datas.state}</td>
                       <td>{datas.district}</td>
-                      <td><Button onClick={e =>deleteUser(e,datas._id)} className='bg-danger border-danger shadow-sm'>Delete</Button></td>
+                      <td><Button onClick={e => deleteUser(e,datas._id)} className='bg-danger border-danger shadow-sm'>Delete</Button></td>
                     </tr>
                   </tbody>
                   ))}
-                  </>)
-                  }
+                  </>)}
                 </Table>
                 <div className="text-center">{error && <span>{error.message}</span>}</div>
               </Card.Body>

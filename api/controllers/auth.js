@@ -4,7 +4,9 @@ import { createError } from "../utils/error.js";
 import {encrypt} from "../utils/cryto.js"
 import loginInfo from "../models/loginInfo.js"
 import { Logins } from "../config/loginInfos.js";
+// import { intervalID } from "../config/srchImgInterval.js"
 
+// intervalID
 
 //login info
 export const loginfo = async (req,res,next) =>{
@@ -40,7 +42,7 @@ export const login = async (req,res,next) =>{
             sameSite: 'strict',
             path: '/',
         }).status(200).json({...other,token})
-        Logins()
+        // Logins()
 
     }catch(err){
         next(err)

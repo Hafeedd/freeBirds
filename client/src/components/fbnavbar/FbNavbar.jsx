@@ -50,8 +50,8 @@ const FbNavbar = ({type}) => {
           >{/* 
             <Nav.Link className='text-white' onClick={() => navigate("/")}>Home</Nav.Link> */}
            
-            <Nav.Link className='text-white' onClick={() => navigate("/login")}>About Us</Nav.Link>
-            <NavDropdown
+            <Nav.Link className='text-white' onClick={() => navigate("/aboutUs")}>About Us</Nav.Link>
+            {/* <NavDropdown
               id="nav-dropdown-dark-example"
               title="Missing child"
               variant="dark"
@@ -64,7 +64,7 @@ const FbNavbar = ({type}) => {
               <NavDropdown.Item onClick={() => navigate("/login")}>
               Case status
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
             
             <Nav.Link className='text-white' onClick={() => navigate("/signup")}>Sign up</Nav.Link>           
           </Nav>

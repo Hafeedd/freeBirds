@@ -5,11 +5,19 @@ const awarnessSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    awarness:{
+    orgName:{
         type: String,
         required: true,
     },
-    details:{
+    orgState:{
+        type: String,
+        required: true,
+    },
+    orgCity:{
+        type: String,
+        required: true,
+    },
+    awareness:{
         type: String,
         required: true,
     },
