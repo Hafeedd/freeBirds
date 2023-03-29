@@ -27,7 +27,7 @@ const Admin = () => {
         <br/>
         <div className=" row justify-content-center text-black justify-content-between pt-2">
               
-                <div onClick={() => navigate("/donation/")} className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
+                <div onClick={() => navigate("/addorg/")} className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
                   {" "}
                   <i className="w-10"><FaHandHoldingHeart/></i>
                   <h3>Add org</h3>
