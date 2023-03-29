@@ -121,7 +121,7 @@ const ReportMC = () => {
                           <Form.Control
                             className='shadow border-0'
                             as='textarea'
-                            placeholder='appearance such as skin color ,dress color etc'
+                            placeholder='appearance such as skin color ,dress color and height etc'
                             rows={3}
                             onChange={handleChange} name="feedback" value={newChild.appearance} 
                             
