@@ -10,10 +10,10 @@ var rekognition = new AWS.Rekognition({region: config.region});
 //set defaut obj to return results data
 var objReturn = {
 	found: false,
-	resultAWS:''
+	resultAWS:undefined
 }
 
-export const search_face = (obj, callback) => {
+export const search_face =async (obj, callback) => {
 	
 	console.log("Finding face ...")
 	const image = obj.photo.split(",");
@@ -30,12 +30,21 @@ export const search_face = (obj, callback) => {
 	 	if (err) {
 			callback(err);
 	 	} else { 
+			try{
 			if(data.FaceMatches && data.FaceMatches.length > 0 && data.FaceMatches[0].Face)
 			{
-				callback (data.FaceMatches[0].Face);	
-			} else {
-				const data = "Matching face not found."
-				callback(data);	
+				objReturn.found = true
+				objReturn.resultAWS = data.FaceMatches[0].Face
+				callback(objReturn);
+
+			}else
+			{
+				objReturn.resultAWS = "Matching face not found"
+				callback(objReturn)
+			}
+		}catch(err){
+			console.log("err")
+			callback(err)
 			}
 		}
 	});
@@ -75,6 +84,7 @@ export const indexFaces =  (obj,callback) => {
 export const deleteFace = (obj,callback) => {
 
 	console.log("Delete image face ...")
+	// console.log(obj.face_id)
 	
 	//prepare params to delete face index.
 	var params_deletion = {CollectionId: config.collectionName, FaceIds: [obj.face_id]};

@@ -27,9 +27,7 @@ import FeedbackList from './components/table/FeedbackList';
 import MCList from './components/table/MCList';
 import ViewNeeds from './components/orgNeeds/ViewNeeds';
 import OrgNeeds from './components/orgNeeds/OrgNeeds';
-/* import UsrProfile from './components/UserProfile/UsrProfile';
- */
-
+import ReportMC from './components/missingchild/ReportMC';
 
 function App() {
   const ProtectedRouteUser = ({children}) => {
@@ -69,6 +67,7 @@ function App() {
                   <SearchMc/>
                 </ProtectedRouteUser>}/>
               <Route path="/searchMc/" element={<SearchMc/>}/>
+              <Route path="/ReportMc/" element={<ReportMC/>}/>
               <Route path="/admin/" element={<Admin/>}/>
               <Route path="/aboutUs/" element={<AboutUs/>}/>
               <Route path="/addorg/" element={<Addorg/>}/>
@@ -85,13 +84,17 @@ function App() {
                 </ProtectedRouteOrg>}/>
               <Route path="/viewAwareness" element={<ViewAwns/>}/>
               <Route path="/viewNeeds" element={<ViewNeeds/>}/>
-              <Route path="/OrgNeeds" element={<OrgNeeds/>}/>
+              <Route path="/OrgNeeds" element={
+              <ProtectedRouteOrg>
+              <OrgNeeds/>
+              </ProtectedRouteOrg>
+              }/>
               <Route path="/feedback" element={<Feedback/>}/>
               <Route path="/feedbackList" element={<FeedbackList/>}/>
               <Route path="/McList" element={<MCList/>}/>
               <Route path='*' element={<NotFound/>}/>
              </Routes>
-         </BrowserRouter> 
+         </BrowserRouter>
           
     </div>
   );

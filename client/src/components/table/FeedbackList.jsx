@@ -6,12 +6,10 @@ import useFetch from '../../useFetch/usefetch';
 const FeedbackList = () => {
     
   const {datas,error,loading} = useFetch("http://localhost:8800/api/feedback/")
-  console.log(datas)
 
   const deleteFeedback = async (e,id) =>{
 
       const res = await axios.delete(`http://localhost:8800/api/feedback/${id}`,{withCredentials: true});
-      console.log(res)
       window.location.reload(true)
   }
 

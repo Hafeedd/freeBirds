@@ -19,20 +19,22 @@ const Users = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try{
+        console.log("in axios")
         await axios.post('http://localhost:8800/api/searchMC/',{
-            photo: newUser.photo,
+          photo: newUser.photo,
         },{withCredentials: true}).then(async res =>{
+          console.log("in if")
           if(!res.data.FaceId){
-            return("Matching face not found")
+            console.log(res.data)
+            setNewRes({photo:res.data,details:null})
           }
-          // console.log(res)
-          const data = await axios.get(`http://localhost:8800/api/missingChild/faceid/${res.data.FaceId}`,{withCredentials: true})
+          const data = await axios.get(`http://localhost:8800/api/missingChild/faceid/${res.data}`,{withCredentials: true})
           setNewRes({photo:data.data.photo , details:data.data})
 
       });
       }
     catch(err){
-      console.log(err.response.data)
+      console.log(err)
     }
   }
 
@@ -55,7 +57,6 @@ const Users = () => {
         base64 = await convertToBase64(file);
         setNewUser({...newUser, photo: base64 });
     }
-
 
 
     // test object
@@ -103,14 +104,17 @@ const Users = () => {
             
             </div>
 
-
-
-                     
                       <div className="d-grid">
                         <Button variant="danger" type="submit">
                           search
                         </Button>
                       </div>
+                      <br></br>
+                      {/* <div className="d-grid">
+                        <Button variant="danger" onClick={uploadSearchChild}>
+                          Upload the image for continous check
+                        </Button>
+                      </div> */}          
                     </Form>
                     {/* <div>{error && <span>{error.message}</span>}</div> */} {/* to show "can't find message" when couldn't find missing child */} 
                   </div>
@@ -119,9 +123,9 @@ const Users = () => {
             </Card>
           </Col>
          </Row> 
-{/*       </Container>
-
-      <Container  className="d-grid"> */}
+     </Container>
+<br></br>
+      <Container  className="d-grid">
 {/* 
       searching child details */}
       <Row className='ms-3 align-content-between justify-content-between'>

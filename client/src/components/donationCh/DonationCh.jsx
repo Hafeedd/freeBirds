@@ -47,9 +47,9 @@ const DonationCh = () => {
               <div  className=" shadow col-xs-6 col-md-3 justify-content-between bg-white rounded-3 p-4 text-black z-index-1">
                 {" "}
                 <i ><FaHandHoldingUsd style={styles}/></i>
-                <h3>Monitory</h3>
+                <h3>Monetary</h3>
                 <p>Payment options</p>
-                <i onClick={() => navigate("https://pay.google.com/")} className=""><FaGooglePay style={smStyle}/></i>
+                <><a href='https://pay.google.com/'><i /* onClick={() => navigate("https://pay.google.com/")} */ className=""><FaGooglePay style={smStyle}/></i></a></>
                 <br />
                 <i className=""><FaCcApplePay style={smStyle}/></i>
                 

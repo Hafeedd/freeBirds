@@ -29,6 +29,7 @@ export const verifyAdmin = async (req,res,next) =>{
 // verify Organisation for updation
 export const verifyOrgWithId = (req,res,next) =>{
     verifyToken(req,res,next,()=>{
+        console.log("verifying")
         if(req.user.type.isOrg && req.user.id === req.params.id || req.user.type.isAdmin){
             next()
         }else

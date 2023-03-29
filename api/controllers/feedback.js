@@ -1,5 +1,4 @@
 import Feedback from "../models/feedback.js";
-import route from "../routers/education.js";
 import { createError } from "../utils/error.js";
 
 

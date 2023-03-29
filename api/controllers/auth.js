@@ -4,9 +4,11 @@ import { createError } from "../utils/error.js";
 import {encrypt} from "../utils/cryto.js"
 import loginInfo from "../models/loginInfo.js"
 import { Logins } from "../config/loginInfos.js";
-// import { intervalID } from "../config/srchImgInterval.js"
+import { searchCild } from "../config/srchImgInterval.js";
+// import {intervalID} from "../config/srchImgInterval.js";
 
 // intervalID
+// searchCild()
 
 //login info
 export const loginfo = async (req,res,next) =>{

@@ -1,6 +1,6 @@
 import express from "express"
 import { createServices, updateServices, viewService, viewServices } from "../controllers/service.js";
-import { verifyOrg, verifyOrgWithId } from "../utils/verifyToken.js";
+import { verifyOrgWithId } from "../utils/verifyToken.js";
 
 const route = express.Router();
 
@@ -8,7 +8,7 @@ const route = express.Router();
 route.post("/:id",verifyOrgWithId,createServices) //id of the organisation who create the services
 
 //update service
-route.put("/:id",verifyOrg,updateServices)
+route.put("/:id",verifyOrgWithId,updateServices)
 
 //view service
 route.get("/:id",viewService)

@@ -5,11 +5,11 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import orgRegR from "./routers/auth.js";
 import awarnessR from "./routers/awarness.js";
-import educationR from "./routers/education.js";
 import missingChildR from "./routers/missingChild.js";
 import serviceR from "./routers/service.js";
 import searchR from "./routers/searchChild.js"
 import feedbackR from "./routers/feedbacks.js"
+import bodyParser from "body-parser";
 
 const app = express()
 dotenv.config()
@@ -30,12 +30,13 @@ mongoose.connection.on("disconnected",()=>{
 //middleware
 
 app.use(cookieParser())
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 app.use(express.json());
 
+
 app.use("/api/auth",orgRegR);
 app.use("/api/awarness",awarnessR);
-app.use("/api/education",educationR);
 app.use("/api/missingChild",missingChildR);
 app.use("/api/service",serviceR)
 app.use("/api/searchMC",searchR)

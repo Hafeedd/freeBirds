@@ -1,22 +1,48 @@
-import missing_child from "../models/missing_child.js";
+import SearchingChild from "../models/searchingChild.js";
+import { search_face, deleteFace } from "../utils/searchChild.js";
+import mailservice from "../utils/email.js";
+import MissingChild from "../models/missing_child.js";
 
-const count = async()=>{
-    var length = 0;
-    let query = await missing_child.find();
-        if(query){
-            query.count()
-           length++
+export const searchCild = async () =>{
+    // counter()
+    for await (const doc of SearchingChild.find()) {
+        if(doc){
+            let obj = { photo : doc.photo}
+            search_face(obj,async(data) => {
+                if(data.found === false)
+                {
+                    console.log("photo not found")
+                    return false
+                }
+                else{
+                    let res = await MissingChild.findOne({aws_face_id:data.resultAWS.FaceId})
+                    if(res){
+                     res = res.userEmail
+                    // console.log(cont)
+                    mailservice("shihabhairuneesa@gmail.com",res)}
+
+                // await SearchingChild.findOneAndDelete({no:i})
+                // const obj = {face_id:data.resultAWS.FaceId}
+                // deleteFace(obj,(res)=>{
+                //     if(res){
+                //     }
+                // })
+
+            }
+        });
         }
 
+    }
 }
 
 // export const intervalID = setInterval(async() => {
-//     var i = 0
-//     i++
-//     if(i=1){
-//         clearInterval(intervalID)
-//     }
+   
+//    searchCild()
+   
+//     // var i = 0
+//     // i++
+//     // if(i=1){
+//     //     clearInterval(intervalID)
+//     // }
 
-// },1000 /* 300000 */);//milliseconds
-
-// export default intervalID;
+// },10000 /* 300000 */);//milliseconds

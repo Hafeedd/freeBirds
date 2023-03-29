@@ -1,7 +1,49 @@
-import React from 'react'
+import CryptoJS  from 'crypto-js';
+import axios from 'axios';
+import React, {useContext, useState } from 'react';
 import { Form, Button ,Col, Row, Container, Card} from 'react-bootstrap';
+import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const OrgNeeds = () => {
+
+    const navigate = useNavigate();
+
+    var key = 'gzLxc16cnBhScdScGijOEXdAyv2XkgR5TRqYPK5FH7Q='
+    var {user} = useContext(AuthContext);
+
+    const [newNeeds , setNeeds] = useState({
+        service:'',
+        details:'',
+      });
+    
+      const [error,setError] = useState(false);
+      const [errorM,setErrorM] = useState(undefined);
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        var data = CryptoJS.AES.decrypt(user,key);
+        const token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
+        const id = token.id
+        try{
+          const res = await axios.post(`http://localhost:8800/api/service/${id}`,{
+          service:newNeeds.service,
+          details:newNeeds.details,
+          },{withCredentials: true})
+          navigate(-1)
+          console.log(res)
+        }catch (err){
+          console.log(err.response.data)
+          setError(true)
+          setErrorM(err.response.data.message)
+        }
+        
+      }
+    
+      const handleChange = (e) =>{
+        setNeeds({...newNeeds,[e.target.name]:e.target.value})
+      }
+
   return (
     <div>
            <Container>
@@ -24,29 +66,28 @@ const OrgNeeds = () => {
                             <div className="mb-3">
             
                     
-                    <Form /* onSubmit={handleSubmit} */>
+                    <Form onSubmit={handleSubmit}>
                         {/* email */}
                         <Form.Group className="mb-3">
-                        <Form.Label className='text-center'>Org Email Address</Form.Label>
+                        <Form.Label className='text-center'>Service</Form.Label>
                         <Form.Control
                         
                         className='shadow border-0'
-                            type='email'
-                            placeholder='Enter email'
-                            /* onChange={handleChange}  */name="email" 
+                            type='service'
+                            placeholder='Enter service'
+                            onChange={handleChange} name="service" value={newNeeds.service}
                             required
                         />
                         </Form.Group>
 
                         {/* text area */}
                         <Form.Group className="mb-3">
-                        <Form.Label className='text-center'>Needs of Childrens in organisation </Form.Label>
+                        <Form.Label className='text-center'>Needs of organisation </Form.Label>
                         <Form.Control
                             className='shadow border-0'
                             as='textarea'
-                            
                             rows={8}
-                            /* onChange={handleChange} */ name="awareness"  
+                            onChange={handleChange} name="details"  value={newNeeds.details}
                             required
                         />
                         </Form.Group>
@@ -54,12 +95,8 @@ const OrgNeeds = () => {
                         <Button type='submit' variant='danger' className=' me-0'>
                             submit
                         </Button>
-                    </Form> {/* 
-                    <div>{error && <span>{errorM}</span>}</div>  */}
-
-
-
-
+                    </Form> {
+                    <div>{error && <span>{errorM}</span>}</div> }
                             </div>
                             </div>
                         

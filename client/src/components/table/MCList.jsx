@@ -18,7 +18,7 @@ const MCList = () => {
   return (
     <div>
          <Container>
-            <div className='text-center'><h2>feedback list</h2></div>
+            <div className='text-center'><h2>Missing Child list</h2></div>
             
     <Row className="vh-100  d-flex justify-content-center align-items-top border-2 border-danger">
       

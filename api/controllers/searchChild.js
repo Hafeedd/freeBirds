@@ -1,21 +1,43 @@
+import { verify } from "crypto";
+// import { counter } from "../config/srchImgInterval.js";
+import Login from "../models/login.js";
+import SearchingChild from "../models/searchingChild.js";
 import { indexFaces, search_face, deleteFace } from "../utils/searchChild.js";
 
 //detect face
-export const detectFace = (req,res) =>{
-    console.log("searching face ...")
-    const obj = {
-        photo: req.body.photo
-    }
+var i = 0
+export const detectFace = async (req,res) =>{
 
-    search_face(obj, (data) => {
-        if(!data)
-        {
-            res.send(data)
+    var face = await SearchingChild.findOne({photo:req.body.photo})
+        const obj = {
+            photo: req.body.photo
         }
-        else{
-            res.send(data);
-        }
-    });
+        
+        const name = await Login.findById(req.user.id)
+            var searchingChild = new SearchingChild({
+                email:name.email,
+                name:name.username,
+                ...req.body,
+            })
+            console.log(searchingChild)
+
+            search_face(obj,async(data) => {
+                if(data.found === false)
+                {
+                console.log("in err")
+                if(!face){
+                    await searchingChild.save();  
+                    console.log("image saved")
+                }
+            }
+            else{
+                // await searchingChild.save();
+                console.log("in data")
+                res.send(data.resultAWS.FaceId)    
+            }
+            
+            
+        });
 }
 
 //insert face to collection

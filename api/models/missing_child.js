@@ -17,6 +17,10 @@ const misschildSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    userEmail:{
+        type: String,
+        required: true,
+    },
     state:{
         type: String,
         required: true,
@@ -32,17 +36,8 @@ const misschildSchema = new mongoose.Schema({
     gender:{
         type: String,
     },
-    height:{
-        type: Number,
-    },
     age:{
         type: Number,
-    },
-    color:{
-        type: String,
-    },
-    dress:{
-        type: String,
     },
     date:{
         type: Date,

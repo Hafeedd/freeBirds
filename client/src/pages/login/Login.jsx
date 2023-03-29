@@ -3,8 +3,11 @@ import React, { useContext, useState } from 'react'
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import { Link , useNavigate } from "react-router-dom";
 import { AuthContext } from '../../context/AuthContext';
+import CryptoJS  from 'crypto-js';
 
 export const Login = () => {
+
+  var key = 'gzLxc16cnBhScdScGijOEXdAyv2XkgR5TRqYPK5FH7Q='
   
   const [newlogin , setNewLogin] = useState({
     name: '',
@@ -24,12 +27,18 @@ export const Login = () => {
       username:newlogin.name,
       password:newlogin.password,
     },{withCredentials: true});
-    console.log("token"+res.data.token)
-      dispatch({type: "LOGIN_SUCCESS", payload: res.data.token })
-      console.log(user)
-      navigate("/")
+    dispatch({type: "LOGIN_SUCCESS", payload: res.data.token })
+    const user = res.data.token
+      const data = CryptoJS.AES.decrypt(user,key);
+      var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
+      if( token.type.isUser ){
+      navigate("/user")}
+      else if( token.type.isOrg ){
+        navigate("/organisation")}
+        else{
+          navigate("/admin")
+        }
     }catch (err) {
-      console.log(err)
       dispatch({type: "LOGIN_FAILURE", payload:  err.response.data })
     }
   }

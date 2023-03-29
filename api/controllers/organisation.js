@@ -21,6 +21,7 @@ export const registerOrg = async (req,res,next) =>{
         try{
             const orgLogin = new Login({
             _id:org._id,
+            email:req.body.email,
             username:req.body.name,
             password:hash,
             type:{isOrg:true}

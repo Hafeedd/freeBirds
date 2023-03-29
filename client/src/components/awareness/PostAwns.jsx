@@ -30,7 +30,7 @@ const PostAwns = () => {
           orgNmae:newAwareness.orgNmae,
           awareness:newAwareness.awareness,
           },{withCredentials: true})
-          // navigate("/organisation")
+          navigate("/organisation")
     
         }catch (err){
           console.log(err.response.data)
@@ -98,8 +98,8 @@ const PostAwns = () => {
                         <Button type='submit' variant='danger' className=' me-0'>
                             submit
                         </Button>
-                    </Form> {/* 
-                    <div>{error && <span>{errorM}</span>}</div>  */}
+                    </Form> {
+                    <div>{error && <span>{errorM}</span>}</div> }
 
 
 

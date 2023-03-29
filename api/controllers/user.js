@@ -24,8 +24,10 @@ export const registerUser = async (req,res,next) =>{
         await user.save()
         const {password,...others} = user._doc;
         res.status(200).json({...others})
+
         const userLogin = new Login({
         _id:user._id,
+        email:req.body.email,
         username:req.body.name,
         password:hash,
         type:{isUser:true},

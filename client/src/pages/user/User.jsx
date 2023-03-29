@@ -11,8 +11,9 @@ const User = () => {
     <>
     <FbNavbar  type="user" />
       <ImgSlider />
-      <Features className=" " />
+      <Features type="user" />
       <Feedback/>
+      <br></br>
       <Footer/>
 
     </>

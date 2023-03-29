@@ -5,7 +5,15 @@ const serviceSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    address:{
+    orgName:{
+        type: String,
+        required: true,
+    },
+    orgState:{
+        type: String,
+        required: true,
+    },
+    orgCity:{
         type: String,
         required: true,
     },
