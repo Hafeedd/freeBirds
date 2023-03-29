@@ -149,7 +149,7 @@ const ReportMC = () => {
                     <div className="mt-3">
                       <p className="mb-0  text-center">
                         Already reported?{' '}
-                        <Link to="/searchMc/">search</Link>
+                        <Link to="/searchMc/">search child</Link>
                       </p>
                     </div>
                   </div>
