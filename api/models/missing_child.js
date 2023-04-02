@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const misschildSchema = new mongoose.Schema({
     o_id:{
         type: String,
-        required: true,
+        // required: true,
     },
     aws_face_id:{
         type: String,
@@ -32,6 +32,10 @@ const misschildSchema = new mongoose.Schema({
     photo:{
         type: String,
         required: true,
+    },
+    appearance:{
+        type: String,
+        // required: true,
     },
     gender:{
         type: String,

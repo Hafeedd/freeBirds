@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
 import { FaHandHoldingHeart ,FaHandHoldingUsd,FaSearch} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../../context/AuthContext";
 
 export const Features = ({type}) => {
   const navigate = useNavigate();
-  return (
+  const {user}  = useContext(AuthContext)
+  console.log(user)
+
+    return (
     <div id="features" className="text-center z-index-n2">
       <div className="container">
         <br/>
@@ -29,7 +33,7 @@ export const Features = ({type}) => {
                   {" "}
                   <i className="w-10"><FaSearch/></i>
                   <h3>Missing child</h3>
-                  {type ==="user" ?<div className="ps-2 pe-2 d-flex justify-content-center gap-2 pt-4"><Button  className="bg-white text-danger border-white" onClick={() => navigate("/searchMc/")}>Report</Button> <br/>
+                  {type ==="user" ?<div className="ps-2 pe-2 d-flex justify-content-center gap-2 pt-4"><Button  className="bg-white text-danger border-white" onClick={() => navigate("/ReportMc/")}>Report</Button> <br/>
                                        <Button className=" bg-white text-danger border-white" onClick={() => navigate("/searchMc/")}>Search </Button>   
                                        <Button className="ps-4 pe-4 bg-white text-danger border-white" onClick={() => navigate("/McList")}>View </Button>
                                        

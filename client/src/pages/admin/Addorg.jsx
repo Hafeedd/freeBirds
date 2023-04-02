@@ -74,21 +74,7 @@ const Addorg = () => {
                         onChange={handleChange} name="name" value={newOrg.name} />
                       </Form.Group>
 
-                      <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label className="text-center">
-                         District
-                        </Form.Label>
-                        <Form.Control type="text-field" placeholder="Enter the name of district "
-                        onChange={handleChange} name="District" value={newOrg.District}  />
-                      </Form.Group>
                       
-                      <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label className="text-center">
-                         State
-                        </Form.Label>
-                        <Form.Control type="text-field" placeholder="Enter the name of  state " 
-                        onChange={handleChange} name="State" value={newOrg.State} />
-                      </Form.Group>
 
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
@@ -106,10 +92,25 @@ const Addorg = () => {
                         onChange={handleChange} name="phone" value={newOrg.phone} />
                       </Form.Group>
 
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label className="text-center">
+                         State
+                        </Form.Label>
+                        <Form.Control type="text-field" placeholder="Enter the name of  state " 
+                        onChange={handleChange} name="State" value={newOrg.State} />
+                      </Form.Group>
+
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label className="text-center">
+                         City
+                        </Form.Label>
+                        <Form.Control type="text-field" placeholder="Enter the name of district "
+                        onChange={handleChange} name="District" value={newOrg.District}  />
+                      </Form.Group>
+
                       <Form.Group
                         className="mb-3"
-                        controlId="formBasicPassword"
-                      >
+                        controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" placeholder="Password" 
                         onChange={handleChange} name="password" value={newOrg.password} />

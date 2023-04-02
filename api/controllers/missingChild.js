@@ -1,25 +1,53 @@
 import missing_child from "../models/missing_child.js";
 import { createError } from "../utils/error.js";
 import { deleteFace } from "../utils/searchChild.js";
+import Organisation from "../models/organisation.js";
 import { /* deleteface, */ insertFace } from "./searchChild.js";
+import Public from "../models/public.js";
 // import { upload } from "../utils/uploader.js";
 
 //create missing_child
-var data ;
+// var data ;
+
+const formatDate = () => {
+    var d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+ 
+
 export const createMissingChild = async (req,res,next) =>{
+    var data = await Organisation.findById(req.user.id)
+    if(!data){
+        data = await Public.findById(req.user.id)
+    }
+    const date = formatDate()
     try{ 
         insertFace(req,async (imageId)=>{
-        if(imageId) {
-        const missingChild = new missing_child({
+            if(imageId) {
+        try{const missingChild = new missing_child({
             // photo:req.file.filename,
             aws_face_id:imageId,
-            o_id:req.params.id,
+            phoneno:data.phone,
+            userEmail:data.email,
+            date:date,
             ...req.body,
-        })
-        await missingChild.save()
-        res.status(200).json("Missing Child created successfully")
-        console.log("missing child created")
-    }else return err;
+            })
+            await missingChild.save()
+            res.status(200).json("Missing Child created successfully")
+            console.log("missing child created")}
+            catch(err){
+                next(createError(400,"Failed to create missing child."))
+            }
+        }
     })
     }catch(err){
         next(createError(400,"Failed to create missing child."))

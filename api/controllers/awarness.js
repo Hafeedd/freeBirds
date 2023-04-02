@@ -1,7 +1,6 @@
 import Awarness from "../models/awarness.js"
 import Organisation from "../models/organisation.js";
 import { createError } from "../utils/error.js"
-import { verifyToken } from "../utils/verifyToken.js";
 
 //create awarness
 export const createAwarness = async (req,res,next) =>{

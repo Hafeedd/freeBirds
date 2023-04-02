@@ -50,7 +50,7 @@ export const search_face =async (obj, callback) => {
 	});
 }
 
-export const indexFaces =  (obj,callback) => {
+export const indexFaces = async (obj,callback) => {
 	
 	console.log("Index new image face ...")
 	const image = obj.photo.split(",");
@@ -71,7 +71,7 @@ export const indexFaces =  (obj,callback) => {
 			objReturn.resultAWS = err, err.stack
 			callback(objReturn)
 		} else {
-			 console.log(data.FaceRecords[0].Face); // successful response
+			//  console.log(data.FaceRecords[0].Face); // successful response
 
 			objReturn.found = true
 			objReturn.resultAWS = data.FaceRecords[0].Face

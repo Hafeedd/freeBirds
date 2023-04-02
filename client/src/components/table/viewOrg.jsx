@@ -1,24 +1,34 @@
-import React/* , { useState } */ from 'react'
 import Table from 'react-bootstrap/Table';
 import { Col, /* Button, */ Row, Container, Card, Button} from "react-bootstrap";
-// import axios from 'axios';
 import useFetch from '../../useFetch/usefetch';
+import CryptoJS  from 'crypto-js';
 import axios from 'axios';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 const ViewUser = () => {
 
+    const {user,key} = useContext(AuthContext) 
+    if(user != null){
+      const data = CryptoJS.AES.decrypt(user,key);
+      var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
+      if(token){
+        var admin = token.type.isAdmin;
+        console.log(admin)
+      }
+    }
   
-  const {datas,error,loading} = useFetch("http://localhost:8800/api/auth/getUser/")
+  const {datas,error,loading} = useFetch("http://localhost:8800/api/auth/getOrg/")
 
   const deleteUser = async (e,id) =>{
     const confirmBox = window.confirm(
-      "Do you really want to delete this User?"
-    )
-    if (confirmBox === true) {
-      
-      const res = await axios.delete(`http://localhost:8800/api/auth/deleteUser/${id}`,{withCredentials: true});
-      console.log(res);
-      window.location.reload(true)
+        "Do you really want to delete this Organisation ?"
+      )
+      if (confirmBox === true) {
+
+    const res = await axios.delete(`http://localhost:8800/api/auth/deleteOrg/${id}`,{withCredentials: true});
+    console.log(res);
+    window.location.reload(true)
     }
   }
 
@@ -27,8 +37,9 @@ const ViewUser = () => {
   
   return (
     <Container>
+      <div className='text-center'><h2>Organisation list</h2></div>
     <Row className="vh-100  d-flex justify-content-center align-items-top border-2 border-danger">
-      <Col md={8} lg={6} xs={12}>
+      <Col md={8} lg="auto" xs={13}>
         {/* <div className="border border-2 border-danger"></div> */}
         <Card className="vw-75 shadow-lg border-5  border-white vh-75">
         {/* <div className="border border-2 border-danger"></div> */}
@@ -37,11 +48,12 @@ const ViewUser = () => {
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>User Name</th>
+                      <th>Organisation Name</th>
                       <th>Phone number</th>
+                      <th>Email</th>
                       <th>State</th>
                       <th>City</th>
-                      <th>Delete</th>
+                      {admin && <th>Delete</th>}
                       
                     </tr>
                   </thead>
@@ -54,9 +66,10 @@ const ViewUser = () => {
                       <td>{i+1}</td>
                       <td>{datas.name}</td>
                       <td>{datas.phone}</td>
+                      <td>{datas.email}</td>
                       <td>{datas.state}</td>
                       <td>{datas.district}</td>
-                      <td><Button onClick={e => deleteUser(e,datas._id)} className='bg-danger border-danger shadow-sm'>Delete</Button></td>
+                      {admin && <td><Button onClick={e => deleteUser(e,datas._id)} className='bg-danger border-danger shadow-sm'>Delete</Button></td>}
                     </tr>
                   </tbody>
                   ))}

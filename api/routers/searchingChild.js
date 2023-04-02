@@ -14,3 +14,5 @@ router.get("/",getAllSC);
 
 //view a searching child
 router.delete("/:id",deleteSC);
+
+export default router

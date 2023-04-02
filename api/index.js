@@ -9,6 +9,7 @@ import missingChildR from "./routers/missingChild.js";
 import serviceR from "./routers/service.js";
 import searchR from "./routers/searchChild.js"
 import feedbackR from "./routers/feedbacks.js"
+import sponsorR from "./routers/sponsor.js"
 import bodyParser from "body-parser";
 
 const app = express()
@@ -41,6 +42,7 @@ app.use("/api/missingChild",missingChildR);
 app.use("/api/service",serviceR)
 app.use("/api/searchMC",searchR)
 app.use("/api/feedback",feedbackR)
+app.use("/api/sponsor",sponsorR)
 
 app.use((err,req,res,next)=>{
     const errStatus = err.status || 500;
