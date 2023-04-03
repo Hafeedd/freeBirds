@@ -1,19 +1,22 @@
 import express from "express"
-import { createSpnsr, updateSpnsr, viewSpnsrs } from "../controllers/sponsor.js";
+import { createSpnsr, deleteSpnsr, updateSpnsr, viewSpnsrs } from "../controllers/sponsor.js";
 import { verifyOrgWithId } from "../utils/verifyToken.js";
 
 const route = express.Router();
 
-//create service
+//create Sponsor
 route.post("/:id",verifyOrgWithId,createSpnsr) //id of the organisation who create the services
 
-//update service
+//update Sponsor
 route.put("/:id",verifyOrgWithId,updateSpnsr)
 
-//view service
+//view Sponsor
 // route.get("/:id",viewService)
 
-//view services
-route.get("/",viewSpnsrs)
+//view Sponsor
+route.get("/:id",viewSpnsrs)
+
+//delete Sponsor
+route.delete("/:id",deleteSpnsr)
 
 export default route;

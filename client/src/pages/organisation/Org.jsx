@@ -34,11 +34,11 @@ const Org = () => {
                   <h3>Add sponsor</h3>
                   <p>help to find missing child</p>
                 </div>
-                <div onClick={() => navigate("/addspsr/")} className="shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-1">
+                <div onClick={() => navigate("/viewSpsr/")} className="shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-1">
                   {" "}
-                  <i className="w-10"><FaHandHoldingUsd/></i>
-                  <h3>Case status</h3>
-                  <p>mange case status</p>
+                  <i className="w-10"><FaSearch/></i>
+                  <h3> View Sponsers</h3>
+                  <p>view and manage sponsors</p>
                 </div>
         </div>
         <br/>

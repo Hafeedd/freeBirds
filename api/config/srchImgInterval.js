@@ -17,9 +17,9 @@ export const searchCild = async () =>{
                 else{
                     let res = await MissingChild.findOne({aws_face_id:data.resultAWS.FaceId})
                     if(res){
-                     res = res.userEmail
-                    // console.log(cont)
-                    mailservice("shihabhairuneesa@gmail.com",res)}
+                     mail = res.userEmail
+                     const cont = res.phoneno
+                    mailservice(mail,cont)}
 
                 // await SearchingChild.findOneAndDelete({no:i})
                 // const obj = {face_id:data.resultAWS.FaceId}

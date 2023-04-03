@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 const misschildSchema = new mongoose.Schema({
-    o_id:{
+    u_id:{
         type: String,
-        // required: true,
+        required: true
     },
     aws_face_id:{
         type: String,
