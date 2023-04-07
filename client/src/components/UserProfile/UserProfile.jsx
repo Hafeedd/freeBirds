@@ -40,7 +40,7 @@ const UserProfile = () => {
                       height="100px" 
                       className="  shadow-sm rounded-circle align-self-center mt-0 mb-4  "
                   /> */}
-                  <Button variant="primary" type="submit" onClick={()=>ChangeEdit()}>Edit</Button>
+                  <Button variant="danger" className='d-flex justify-content-left  align-items-center text-white'  onClick={()=>ChangeEdit()}>Edit</Button>
                   
                   </div>
                   
