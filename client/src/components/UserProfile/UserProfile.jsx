@@ -6,7 +6,7 @@ import male from "./../../images/male.png"
 import female from "./../../images/female.png"
 
 
-const UsrProfile = () => {
+const UserProfile = () => {
     const [EditProfile , setEditProfile] = useState(false);
     const user={
      name: 'hafeed',
@@ -140,4 +140,4 @@ const UsrProfile = () => {
   )
 }
 
-export default UsrProfile
+export default UserProfile
