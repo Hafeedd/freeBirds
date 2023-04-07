@@ -1,25 +1,54 @@
 import missing_child from "../models/missing_child.js";
 import { createError } from "../utils/error.js";
 import { deleteFace } from "../utils/searchChild.js";
+import Organisation from "../models/organisation.js";
 import { /* deleteface, */ insertFace } from "./searchChild.js";
+import Public from "../models/public.js";
 // import { upload } from "../utils/uploader.js";
 
 //create missing_child
-var data ;
+// var data ;
+
+const formatDate = () => {
+    var d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+ 
+
 export const createMissingChild = async (req,res,next) =>{
+    var data = await Organisation.findById(req.user.id)
+    if(!data){
+        data = await Public.findById(req.user.id)
+    }
+    const date = formatDate()
     try{ 
         insertFace(req,async (imageId)=>{
-        if(imageId) {
-        const missingChild = new missing_child({
+            if(imageId) {
+        try{const missingChild = new missing_child({
             // photo:req.file.filename,
+            u_id:req.user.id,
             aws_face_id:imageId,
-            o_id:req.params.id,
+            phoneno:data.phone,
+            userEmail:data.email,
+            date:date,
             ...req.body,
-        })
-        await missingChild.save()
-        res.status(200).json("Missing Child created successfully")
-        console.log("missing child created")
-    }else return err;
+            })
+            await missingChild.save()
+            res.status(200).json("Missing Child created successfully")
+            console.log("missing child created")}
+            catch(err){
+                next(createError(400,"Failed to create missing child."))
+            }
+        }
     })
     }catch(err){
         next(createError(400,"Failed to create missing child."))
@@ -27,15 +56,19 @@ export const createMissingChild = async (req,res,next) =>{
     
 };
 
-//update missing child
+//update missing child status
 export const updateMissingChild = async (req,res,next) =>{
+    console.log("in status update")
     try{
-        const missingChild = await missing_child.findByIdAndUpdate(req.params.id)
-        res.status(200).json(missingChild);
+        await missing_child.findOneAndUpdate({_id:req.params.id},{$set:{
+            status:true
+        }},{new:true})
+        res.status(200).json("missingChild status updated to found");
     }catch(err){
         next(createError(400,"Failed to update missing child."))
     }
 };
+
 
 export const  searchfac = async (req,res,next) =>{
     try{
@@ -45,23 +78,6 @@ export const  searchfac = async (req,res,next) =>{
         next(createError(400,"No missing child posted with this face id"))
     }
 }
-
-//delete missing child
-export const deleteMissingChild = async (req,res,next) =>{
-    try{
-        deleteFace(async(req,res)=>{
-        if(res.data.err){
-            res.status(400).json("Something went wrong.")
-        }
-        else{
-            await missing_child.findByIdAndDelete(req.params.id)
-            res.status(200).json("Deleted the missing chiled.");
-        }
-    })
-    }catch(err){
-        next(createError(400,"Failed to delete missing child."))
-    }
-};
 
 //view missing child
 export const MissingChild = async (req,res,next) =>{

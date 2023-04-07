@@ -6,6 +6,7 @@ import { decrypts } from "./cryto.js";
 // verify token
 export const verifyToken = async (req,res,next) => {
     const token = req.cookies.access_token;
+    // console.log(token)
     if(!token){
         return next(createError(404,"You are not autherized!"));
     }
@@ -61,5 +62,16 @@ export const verifyUser = async (req,res,next) =>{
         if(user.type.isUser || user.type.isAdmin){
             next()
         }else return next(createError(403,"You are not autherized!"))
+    })
+}
+
+// verify user and org with id
+export const verifyUserOrgWithId = (req,res,next) =>{
+    verifyToken(req,res,next,()=>{
+        // console.log("verifying token")   
+        if(user.type.isUser && user.id === req.params.id || req.user.type.isOrg && req.user.id === req.params.id || user.type.isAdmin){
+            next()
+        }else
+        return next(createError(403,"You are not autherized!"))
     })
 }

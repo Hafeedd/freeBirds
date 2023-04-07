@@ -1,18 +1,48 @@
 // import axios from 'axios';
-import React from 'react'
-import {  Row, Container, Card, Table } from "react-bootstrap";
+import React, { useContext } from 'react'
+import {  Row, Container, Card, Table, Button } from "react-bootstrap";
 import useFetch from '../../useFetch/usefetch.js';
+import axios from 'axios';
+import CryptoJS  from 'crypto-js';
+import { AuthContext } from '../../context/AuthContext.js';
 
 const MCList = () => {
 
     const {datas,error,loading} = useFetch("http://localhost:8800/api/missingChild/")
-    console.log(datas)
+    // console.log(datas[0])
+    var dat
+    const {user,key} = useContext(AuthContext) 
+    if(user != null){
+      const data = CryptoJS.AES.decrypt(user,key);
+      var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
+      var id = token.id 
+    }
+    
+    const setTheData = (datas) =>{
+      let i = 0;
+      while(i<datas.length){
+        if(datas[i].u_id === id){
+          dat = true
+          break;
+        }
+        i++;
+        break
+      }
+    }
 
-    // const changeStatus = async (e,id) =>{
-    //   console.log(e)
-    //   const res = await axios.post(`http://localhost:8800/api/auth/deleteUser/${id}`);
-    //   console.log(res);
-    // }
+    setTheData(datas)
+    
+    const changeStatus = async (e,id) =>{
+      console.log(id)
+      const confirmBox = window.confirm(
+        "Do you really want to update the status of child to found ?"
+      )
+      if (confirmBox === true) {
+      const res = await axios.put(`http://localhost:8800/api/missingChild/${id}`,{withCredentials: true});
+      console.log(res);
+      window.location.reload(true)
+      }
+    }
 
 
   return (
@@ -35,6 +65,7 @@ const MCList = () => {
                       <th>missig place</th>
                       <th>contact no</th>
                       <th>case status</th>
+                      {dat &&<th>update status</th>}
                       
                     </tr>
                   </thead>
@@ -42,7 +73,14 @@ const MCList = () => {
                   {loading ? (
                     "Loading please wait..."
                   ) : (
-                    <> {datas.map((datas,i)=>(
+                    <> {datas.length === 0    &&
+                      <tbody>
+                      <tr>
+                      <td colSpan={6} className="text-center">No datas found</td>
+                      
+                      </tr>
+                      </tbody>}
+                      {datas.map((datas,i)=>(
                     <tbody key={datas._id}>
                     <tr>
                       <td>{i}</td>
@@ -58,6 +96,7 @@ const MCList = () => {
                       <td>{datas.phoneno}</td>
                       {datas.status === false && <td>{"not found"}</td>}
                       {datas.status === true && <td>{"found"}</td>}
+                      {datas.u_id === id && <td ><Button onClick={e => changeStatus(e,datas._id)} className='bg-danger border-danger shadow-sm'>Update</Button></td>}
                      
                     </tr>
                   </tbody>

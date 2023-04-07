@@ -10,8 +10,7 @@ const PostAwns = () => {
 
     const navigate = useNavigate();
 
-    var key = 'gzLxc16cnBhScdScGijOEXdAyv2XkgR5TRqYPK5FH7Q='
-    var {user} = useContext(AuthContext);
+    var {user,key} = useContext(AuthContext);
 
     const [newAwareness , setAwareness] = useState({
         awareness:'',
@@ -26,7 +25,7 @@ const PostAwns = () => {
         const token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
         const id = token.id
         try{
-          const res = await axios.post(`http://localhost:8800/api/awarness/${id}`,{
+          await axios.post(`http://localhost:8800/api/awarness/${id}`,{
           orgNmae:newAwareness.orgNmae,
           awareness:newAwareness.awareness,
           },{withCredentials: true})

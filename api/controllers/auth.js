@@ -23,6 +23,18 @@ export const loginfo = async (req,res,next) =>{
     }
 }
 
+export const logout = async (req,res,next) =>{
+    try{
+        if(req.cookies.access_token){
+            res.clearCookie('access_token').status(200).json("Logout successfull.")
+        }else{
+            res.status(300).json("You are not loged in.")
+        }
+    }catch(err){
+        next(err)
+    }
+}
+
 // Login
 export const login = async (req,res,next) =>{
     const name = req.body.username;

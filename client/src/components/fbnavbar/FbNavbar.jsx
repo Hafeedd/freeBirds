@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -17,6 +18,16 @@ const FbNavbar = ({type}) => {
   /* const signup="signup";
   const login="login";
  */
+
+  const logout = async () =>{
+    try{
+      await axios.get('http://localhost:8800/api/auth/logout',{withCredentials: true})
+      localStorage.removeItem("user")
+      navigate("/")
+      }catch(err){
+      console.log(err)
+    }
+  }
 
 
 
@@ -83,7 +94,7 @@ const FbNavbar = ({type}) => {
               Log in</Button>
               :    
             <Button 
-                onClick={() => navigate("/")}
+                onClick={logout}
                 variant="danger" 
                 className='m-2 rounded-4' 
                 style={{ background: 'linear-gradient(to right, rgb(255, 94, 126), rgba(201, 32, 66))' }}>

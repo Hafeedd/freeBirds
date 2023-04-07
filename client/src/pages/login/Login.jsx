@@ -14,7 +14,7 @@ export const Login = () => {
     password: '',
   });
 
-  const { user,error, dispatch } = useContext(AuthContext);
+  const { /* user ,*/error, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate()
   
@@ -28,8 +28,8 @@ export const Login = () => {
       password:newlogin.password,
     },{withCredentials: true});
     dispatch({type: "LOGIN_SUCCESS", payload: res.data.token })
-    const user = res.data.token
-      const data = CryptoJS.AES.decrypt(user,key);
+    const users = res.data.token
+      const data = CryptoJS.AES.decrypt(users,key);
       var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
       if( token.type.isUser ){
       navigate("/user")}
@@ -40,6 +40,7 @@ export const Login = () => {
         }
     }catch (err) {
       dispatch({type: "LOGIN_FAILURE", payload:  err.response.data })
+      // return null;
     }
   }
     const handleChange = (e) => {

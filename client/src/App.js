@@ -17,8 +17,10 @@ import Addorg from './pages/admin/Addorg';
 
 import CryptoJS  from 'crypto-js';
 import NotFound from './components/error/NotFound';
-import AddSpr from './components/forms/AddSpr';
+import AddSpr from './components/forms/AddSpr'; 
+import ViewSponsor from './components/table/SponsorsList'; 
 import ViewUser from './components/table/ViewUser';
+import ViewOrg from './components/table/viewOrg';
 import Feedback from './components/forms/Feedback';
 import AboutUs from './components/aboutUs/AboutUs';
 import PostAwns from './components/awareness/PostAwns';
@@ -31,11 +33,11 @@ import ReportMC from './components/missingchild/ReportMC';
 
 function App() {
   const ProtectedRouteUser = ({children}) => {
-    const key = 'gzLxc16cnBhScdScGijOEXdAyv2XkgR5TRqYPK5FH7Q='
-    const {user} = useContext(AuthContext);
+    const {user,key} = useContext(AuthContext);
     if(user != null){
     const data = CryptoJS.AES.decrypt(user,key);
     var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));}
+    console.log(token)
     if( user === null || !token.type.isUser){
       return <Navigate to="/login"/>;
     }
@@ -43,12 +45,11 @@ function App() {
   }
 
   const ProtectedRouteOrg = ({children}) => {
-    const key = 'gzLxc16cnBhScdScGijOEXdAyv2XkgR5TRqYPK5FH7Q='
-    const {user} = useContext(AuthContext);
+    const {user,key} = useContext(AuthContext);
     if(user != null){
       const data = CryptoJS.AES.decrypt(user,key);
       var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
-      console.log(token.type.isOrg)}
+    }
       if (user === null || !token.type.isOrg){
       return <Navigate to="/login"/>;
     }
@@ -76,7 +77,9 @@ function App() {
               <Route path="/organisation/" element={<Org/>}/>
               <Route path="/user/" element={<User/>}/>
               <Route path="/addspsr/" element={<AddSpr/>}/>
+              <Route path="/viewSpsr/" element={<ViewSponsor/>}/>
               <Route path="/viewUser" element={<ViewUser/>}/>
+              <Route path="/viewOrg" element={<ViewOrg/>}/>
 {/*               <Route path="/UserProfile" element={<UsrProfile/>}/> */}
               <Route path="/postAwareness"  index element={
                 <ProtectedRouteOrg>

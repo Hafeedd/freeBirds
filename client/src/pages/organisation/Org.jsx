@@ -22,10 +22,10 @@ const Org = () => {
        {/*  <Chart/> */}
         <div className=" row justify-content-center ms-2 me-2 text-black pt-2 justify-content-around">
               
-                <div  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
+                <div onClick={() => navigate("/postAwareness/")}  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
                   {" "}
                   <i className="w-10"><FaHandHoldingHeart/></i>
-                  <h3>Awarness details </h3>
+                  <h3>Awarness</h3>
                   <p>Post Awarness for people</p>
                 </div>
                 <div onClick={() => navigate("/addspsr/")}  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-2">
@@ -34,11 +34,11 @@ const Org = () => {
                   <h3>Add sponsor</h3>
                   <p>help to find missing child</p>
                 </div>
-                <div  className="shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-1">
+                <div onClick={() => navigate("/viewSpsr/")} className="shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-1">
                   {" "}
-                  <i className="w-10"><FaHandHoldingUsd/></i>
-                  <h3>Case status</h3>
-                  <p>mange case status</p>
+                  <i className="w-10"><FaSearch/></i>
+                  <h3> View Sponsers</h3>
+                  <p>view and manage sponsors</p>
                 </div>
         </div>
         <br/>
@@ -50,13 +50,13 @@ const Org = () => {
                   <h3>Feedback</h3>
                   <p>Share feedback for our team</p>
                 </div>
-                <div  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-2">
+                <div onClick={() => navigate("/McList/")} className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-2">
                   {" "}
                   <i className="w-10"><FaSearch/></i>
                   <h3>Missing child details</h3>
                   <p>help to find missing child</p>
                 </div>
-                <div  className="shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-1">
+                <div onClick={() => navigate("/OrgNeeds/")} className="shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-1">
                   {" "}
                   <i className="w-10"><FaHandHoldingUsd/></i>
                   <h3>Needs</h3>

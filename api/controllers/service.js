@@ -60,9 +60,9 @@ export const viewServices = async (req,res,next) =>{
 //delete service
 export const deleteService = async (req,res,next) =>{
     try{
-        await Service.findByIdAndDelete,(req.params.id)
+        await Service.findByIdAndDelete(req.params.id)
         res.status(200).json("Service deleted successfully")
     }catch(err){
-        next(createError(400,"Failed to view service."))
+        next(createError(400,"Failed to delete service."))
     }
 }

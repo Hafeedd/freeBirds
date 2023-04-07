@@ -33,13 +33,13 @@ const Admin = () => {
                   <h3>Add org</h3>
                   <p>help organisation by providing support</p>
                 </div>
-                <div onClick={() => navigate("/donation/")} className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
+                <div onClick={() => navigate("/viewOrg/")} className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
                   {" "}
                   <i className="w-10"><FaBuilding/></i>
                   <h3>View org</h3>
                   <p>view the organisations list and details</p>
                 </div>
-                <div  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-2">
+                <div onClick={() => navigate("/feedbackList/")}  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-2">
                   {" "}
                   <i className="w-10"><FaEnvelope/></i>
                   <h3>View feedback</h3>
@@ -50,13 +50,13 @@ const Admin = () => {
         <br/>
         <div className=" row justify-content-center text-black justify-content-between pt-2">
           
-                <div  className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
+                <div  onClick={() => navigate("/donation/")} className=" shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 text-black z-index-1">
                   {" "}
                   <i className="w-10"><FaHandHoldingHeart/></i>
                   <h3>donation details</h3>
                   <p>help organisation by providing support</p>
                 </div>
-                <div  className="shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-1">
+                <div onClick={() => navigate("/McList/")} className="shadow col-xs-6 col-md-3 bg-white rounded-3 p-4 z-index-1">
                   {" "}
                   <i className="w-10"><FaSearch/></i>
                   <h3>case status</h3>

@@ -44,7 +44,7 @@ export const detectFace = async (req,res) =>{
 export const insertFace = (req,callback)=>{
     const obj = {
         photo: req.body.photo,
-        id_user:req.body._id
+        id_user:req.user.id
     }
      indexFaces(obj, (data) => {
         if(data.found){
