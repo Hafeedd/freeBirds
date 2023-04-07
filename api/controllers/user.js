@@ -16,11 +16,12 @@ export const registerUser = async (req,res,next) =>{
         else if(email){
             next(createError(404,"email already exists."))
         }
-        else{
+        else{    
         const user = new Public({
             ...req.body,
             password:hash,
         })   
+        // console.log(user)
         await user.save()
         const {password,...others} = user._doc;
         res.status(200).json({...others})
@@ -79,7 +80,7 @@ export const getUser = async (req,res,next) => {
         const {password,_id,...others} = user._doc;
         res.status(200).json({...others});
     }catch(err){
-        next(createError(400,"Publics not found."))
+        next(createError(400,"Something went wrong while fetching the User"))
     }
 };
 
@@ -88,12 +89,12 @@ export const getAllUsers = async (req,res,next) => {
     try{
         const users = await Public.find();
         let a = []
-        for(let i=0;i<users.length;i++){
+        for(let i=0;i<user.length;i++){
         var {password,...others} = users[i]._doc;
         a[i] = {...others}
         }
         res.status(200).json(a);
     }catch(err){
-        next(createError(400,"Publics not found."))
+        next(createError(400,"Something went wrong while fetching the data of Public"))
     }
 };

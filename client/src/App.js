@@ -30,6 +30,7 @@ import MCList from './components/table/MCList';
 import ViewNeeds from './components/orgNeeds/ViewNeeds';
 import OrgNeeds from './components/orgNeeds/OrgNeeds';
 import ReportMC from './components/missingchild/ReportMC';
+import Feedbackres from './success/Feedbackres';
 
 function App() {
   const ProtectedRouteUser = ({children}) => {
@@ -37,7 +38,6 @@ function App() {
     if(user != null){
     const data = CryptoJS.AES.decrypt(user,key);
     var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));}
-    console.log(token)
     if( user === null || !token.type.isUser){
       return <Navigate to="/login"/>;
     }
@@ -56,6 +56,18 @@ function App() {
       return children
   }
 
+  const ProtectedRouteAdmin = ({children}) => {
+    const {user,key} = useContext(AuthContext);
+    if(user != null){
+      const data = CryptoJS.AES.decrypt(user,key);
+      var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
+    }
+      if (user === null || !token.type.isAdmin){
+      return <Navigate to="/login"/>;
+    }
+      return children
+  }
+
   return (
     <div>
          <BrowserRouter>
@@ -64,36 +76,54 @@ function App() {
               <Route path="/login/" element={<Login/>}/>
               <Route path="/signup/" element={<SignUp/>}/>
               <Route path="/searchMc/" index element={
-                <ProtectedRouteUser>
-                  <SearchMc/>
-                </ProtectedRouteUser>}/>
+                  <ProtectedRouteUser>
+                      <SearchMc/>
+                  </ProtectedRouteUser>}/>
               <Route path="/searchMc/" element={<SearchMc/>}/>
               <Route path="/ReportMc/" element={<ReportMC/>}/>
-              <Route path="/admin/" element={<Admin/>}/>
+              <Route path="/admin/" element={
+                <ProtectedRouteAdmin>
+                  <Admin/>
+                </ProtectedRouteAdmin>}/>
               <Route path="/aboutUs/" element={<AboutUs/>}/>
-              <Route path="/addorg/" element={<Addorg/>}/>
+              <Route path="/addorg/" element={
+                <ProtectedRouteAdmin>
+                  <Addorg/>
+                </ProtectedRouteAdmin>}/>
               <Route path="/donation/" element={<Donation/>}/>
-
-              <Route path="/organisation/" element={<Org/>}/>
-              <Route path="/user/" element={<User/>}/>
+              <Route path="/organisation/" element={
+                <ProtectedRouteOrg>
+                  <Org/>
+                </ProtectedRouteOrg>}/>
+              <Route path="/user/" element={
+                <ProtectedRouteUser>
+                  <User/>
+                </ProtectedRouteUser>}/>
               <Route path="/addspsr/" element={<AddSpr/>}/>
               <Route path="/viewSpsr/" element={<ViewSponsor/>}/>
-              <Route path="/viewUser" element={<ViewUser/>}/>
+              <Route path="/viewUser" element={
+                <ProtectedRouteAdmin>
+                  <ViewUser/>
+                </ProtectedRouteAdmin>}/>
               <Route path="/viewOrg" element={<ViewOrg/>}/>
 {/*               <Route path="/UserProfile" element={<UsrProfile/>}/> */}
               <Route path="/postAwareness"  index element={
                 <ProtectedRouteOrg>
-                <PostAwns/>
+                  <PostAwns/>
                 </ProtectedRouteOrg>}/>
               <Route path="/viewAwareness" element={<ViewAwns/>}/>
               <Route path="/viewNeeds" element={<ViewNeeds/>}/>
               <Route path="/OrgNeeds" element={
-              <ProtectedRouteOrg>
-              <OrgNeeds/>
-              </ProtectedRouteOrg>
+                <ProtectedRouteOrg>
+                  <OrgNeeds/>
+                </ProtectedRouteOrg>
               }/>
               <Route path="/feedback" element={<Feedback/>}/>
-              <Route path="/feedbackList" element={<FeedbackList/>}/>
+              <Route path="/feedbackRes" element={<Feedbackres/>}/>
+              <Route path="/feedbackList" element={
+                <ProtectedRouteAdmin>
+                  <FeedbackList/>
+                </ProtectedRouteAdmin>}/>
               <Route path="/McList" element={<MCList/>}/>
               <Route path='*' element={<NotFound/>}/>
              </Routes>

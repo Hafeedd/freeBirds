@@ -16,8 +16,8 @@ export const createAwarness = async (req,res,next) =>{
         await awarness.save();
         res.status(200).json(awarness);  
     }catch(err){
-    next(createError(400,"Failed to create awarness."))
-} 
+        next(createError(400,"Failed to create awarness."))
+    } 
 };
 
 //update Awarness
@@ -27,8 +27,8 @@ export const upddateAwarness = async (req,res,next) =>{
         await awarness.save();
         res.status(200).json(awarness);
     }catch(err){
-    next(createError(400,"Failed to update awarness."))
-} 
+        next(createError(400,"Failed to update awarness."))
+    } 
 };
 
 //get awarness
@@ -37,11 +37,11 @@ export const getAwarness = async (req,res,next) =>{
         const awarness = await Awarness.findById(req.params.id)
         res.status(200).json(awarness);
     }catch(err){
-    next(createError(400,"Failed to get awarness."))
-} 
+        next(createError(400,"Failed to get awarness."))
+    } 
 };
 
-//get allawarness
+//get all awarness
 export const getAllAwarness = async (req,res,next) =>{
     try{
         const awarness = await Awarness.find()
@@ -51,9 +51,9 @@ export const getAllAwarness = async (req,res,next) =>{
         a[i] = {...others}
         }
         res.status(200).json(a);
-    }catch(err){
-    next(createError(400,"Failed to get awarness."))
-} 
+    }catch(err){ 
+        next(createError(400,"Failed to get awarnessess."))
+    } 
 };
 
 //get deletAwarness
@@ -62,6 +62,6 @@ export const deletAwarness = async (req,res,next) =>{
         const awarness = await Awarness.findByIdAndDelete(req.params.id)
         res.status(200).json("awarness deleted successfully");
     }catch(err){
-    next(createError(400,"Failed to get awarness."))
-} 
+        next(createError(400,"Failed to get awarness."))
+    } 
 };

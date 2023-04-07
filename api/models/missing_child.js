@@ -12,22 +12,27 @@ const misschildSchema = new mongoose.Schema({
     name:{
         type: String,
         required: true,
+        trim:true
     },
     phoneno:{
         type: Number,
         required: true,
+        trim:true
     },
     userEmail:{
         type: String,
         required: true,
+        trim:true
     },
     state:{
         type: String,
         required: true,
+        trim:true
     },
     city:{
         type: String,
         required: true,
+        trim:true
     },
     photo:{
         type: String,
@@ -35,7 +40,6 @@ const misschildSchema = new mongoose.Schema({
     },
     appearance:{
         type: String,
-        // required: true,
     },
     gender:{
         type: String,

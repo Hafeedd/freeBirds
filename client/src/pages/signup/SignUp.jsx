@@ -12,7 +12,7 @@ const SignUp = () => {
     phone:'',
     password:'',
     state:'',
-    city:'',
+    district:'',
 
   });
 
@@ -28,8 +28,10 @@ const SignUp = () => {
       name:newUser.name,
       email:newUser.email,
       phone:newUser.phone,
+      state:newUser.state,
+      district:newUser.district,
       password:newUser.password,
-      })
+    })
       navigate("/login")
       console.log(res)
 
@@ -100,7 +102,7 @@ const SignUp = () => {
                           City
                         </Form.Label>
                         <Form.Control type="tel" placeholder="Enter city" className='shadow border-0'
-                        onChange={handleChange} name="city" value={newUser.city}/>
+                        onChange={handleChange} name="district" value={newUser.district}/>
                       </Form.Group>
 
                       <Form.Group

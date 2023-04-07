@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+
 import { useNavigate } from 'react-router-dom';
 import logo from "./fblogo.jpg"
 // import SearchMc from "./pages/searchchild/SearchMC";
@@ -20,13 +20,15 @@ const FbNavbar = ({type}) => {
  */
 
   const logout = async () =>{
-    try{
-      await axios.get('http://localhost:8800/api/auth/logout',{withCredentials: true})
-      localStorage.removeItem("user")
-      navigate("/")
-      }catch(err){
-      console.log(err)
-    }
+      console.log("loging out")
+      await axios.get('http://localhost:8800/api/auth/logout',{withCredentials:true})
+      .then(res => {
+        console.log(res)
+        localStorage.removeItem("user")
+        navigate("/")
+      }).catch(err =>{
+        console.log(err)
+      })
   }
 
 
@@ -76,8 +78,9 @@ const FbNavbar = ({type}) => {
               Case status
               </NavDropdown.Item>
             </NavDropdown> */}
-            
+            { type === "home"  &&
             <Nav.Link className='text-white' onClick={() => navigate("/signup")}>Sign up</Nav.Link>           
+                   }
           </Nav>
           {/* <Form className="d-flex">
             <Form.Control

@@ -5,7 +5,6 @@ import useFetch from '../../useFetch/usefetch';
 const ViewNeeds = () => {
 
   const {datas,error,loading} = useFetch("http://localhost:8800/api/service/")
-  console.log(datas)
 
   return (
     <div>
@@ -14,7 +13,14 @@ const ViewNeeds = () => {
            
     <Row className="mt-5 vh-50 d-flex justify-content-center align-items-center">
     {loading?("loading"):(<>
-        {datas.length === 0 && <>
+        {error.status === true && <>
+            <Card className="px-4 shadow-lg border-0 rounded-2 mb-3 text-center">
+            <Card.Body>
+                          <h3 >{error.message}</h3>
+            </Card.Body>
+          </Card>
+          </>}
+        {error === false && datas.length === 0 && <>
           <Card className="px-4 shadow-lg border-0 rounded-2 mb-3 text-center">
           <Card.Body>
                         <h3 >No Datas Found</h3>
@@ -28,8 +34,8 @@ const ViewNeeds = () => {
                       
                         <h3 >{datas?.orgName}</h3>
                     
-                        <Card.Title as="h6" variant="grey">{datas?.orgState}{" "}{datas?.orgCity}</Card.Title> {/* here the org.city  and Org.state shown */}
-                        <Card.Title as="h6" variant="grey">Service:{"  "}{datas?.service}</Card.Title> {/* here the org.city  and Org.state shown */}
+                        <Card.Title as="h6" variant="grey">{datas?.orgState}{" "}{datas?.orgCity}</Card.Title>
+                        <Card.Title as="h6" variant="grey">Service:{"  "}{datas?.service}</Card.Title>
                     <div className='ms-4'>
                         <Card.Text>
                         {datas?.details}

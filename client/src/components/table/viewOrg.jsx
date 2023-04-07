@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
-const ViewUser = () => {
+const ViewOrg = () => {
 
     const {user,key} = useContext(AuthContext) 
     if(user != null){
@@ -14,7 +14,6 @@ const ViewUser = () => {
       var token = JSON.parse(data.toString(CryptoJS.enc.Utf8));
       if(token){
         var admin = token.type.isAdmin;
-        console.log(admin)
       }
     }
   
@@ -26,8 +25,7 @@ const ViewUser = () => {
       )
       if (confirmBox === true) {
 
-    const res = await axios.delete(`http://localhost:8800/api/auth/deleteOrg/${id}`,{withCredentials: true});
-    console.log(res);
+    await axios.delete(`http://localhost:8800/api/auth/deleteOrg/${id}`,{withCredentials: true});
     window.location.reload(true)
     }
   }
@@ -60,7 +58,22 @@ const ViewUser = () => {
                   {loading ? (
                     "Loading Please Wait..."
                     ) : (
-                    <> {datas.map((datas,i)=>(
+                    <> 
+                  {error.status === true &&
+                        <tbody>
+                        <tr>
+                        <td colSpan={7} className="text-center">{error.message}</td>
+                        
+                        </tr>
+                        </tbody>}
+                    {error.status === false && datas.length === 0    &&
+                        <tbody>
+                        <tr>
+                        <td colSpan={7} className="text-center">No Organisations added yet</td>
+                        
+                        </tr>
+                        </tbody>}
+                  {datas.map((datas,i)=>(
                   <tbody key={i} >
                     <tr>
                       <td>{i+1}</td>
@@ -75,7 +88,6 @@ const ViewUser = () => {
                   ))}
                   </>)}
                 </Table>
-                <div className="text-center">{error && <span>{error.message}</span>}</div>
               </Card.Body>
             </Card>
           </Col>
@@ -85,4 +97,4 @@ const ViewUser = () => {
   )
 }
 
-export default ViewUser
+export default ViewOrg

@@ -97,6 +97,6 @@ export const getAllOrgs = async (req,res,next) => {
         // })
         res.status(200).json(orgs)
     }catch(err){
-        next(createError(400,"Organisations not found."))
+        next(createError(400,"Something went wrong while fetching Organisations"))
     }
 };

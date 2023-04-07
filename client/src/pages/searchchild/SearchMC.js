@@ -29,6 +29,7 @@ const Users = () => {
             setNewRes({photo:res.data,details:null})
           }
           const data = await axios.get(`http://localhost:8800/api/missingChild/faceid/${res.data}`,{withCredentials: true})
+          console.log(data)
           setNewRes({photo:data.data.photo , details:data.data})
 
       });

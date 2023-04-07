@@ -9,7 +9,6 @@ import { AuthContext } from '../../context/AuthContext.js';
 const MCList = () => {
 
     const {datas,error,loading} = useFetch("http://localhost:8800/api/missingChild/")
-    // console.log(datas[0])
     var dat
     const {user,key} = useContext(AuthContext) 
     if(user != null){
@@ -19,34 +18,32 @@ const MCList = () => {
     }
     
     const setTheData = (datas) =>{
-      let i = 0;
-      while(i<datas.length){
-        if(datas[i].u_id === id){
-          dat = true
-          break;
-        }
-        i++;
-        break
+      for (const doc of datas){
+        if(doc.u_id === id){
+        dat = true;}
       }
     }
 
     setTheData(datas)
     
-    const changeStatus = async (e,id) =>{
-      console.log(id)
+    const changeStatus = async (e,id,status) =>{
+      if(status === false){
+        status = true;
+      }else{
+        status = false
+      }
       const confirmBox = window.confirm(
-        "Do you really want to update the status of child to found ?"
+        "Do you really want to update the status of child ?"
       )
       if (confirmBox === true) {
-      const res = await axios.put(`http://localhost:8800/api/missingChild/${id}`,{withCredentials: true});
-      console.log(res);
+      await axios.put(`http://localhost:8800/api/missingChild/${id}`,{status},{withCredentials: true});
       window.location.reload(true)
       }
     }
 
 
   return (
-    <div>
+    <div /* onLoad={window.history.go(2)} */>
          <Container>
             <div className='text-center'><h2>Missing Child list</h2></div>
             
@@ -73,7 +70,14 @@ const MCList = () => {
                   {loading ? (
                     "Loading please wait..."
                   ) : (
-                    <> {datas.length === 0    &&
+                    <> {error.status === true &&
+                      <tbody>
+                      <tr>
+                      <td colSpan={6} className="text-center">{error.message}</td>
+                      
+                      </tr>
+                      </tbody>}
+                     {error.status === false && datas.length === 0 &&
                       <tbody>
                       <tr>
                       <td colSpan={6} className="text-center">No datas found</td>
@@ -83,7 +87,7 @@ const MCList = () => {
                       {datas.map((datas,i)=>(
                     <tbody key={datas._id}>
                     <tr>
-                      <td>{i}</td>
+                      <td>{i+1}</td>
                       <td> <img 
                       alt='img'
                       src={datas.photo}
@@ -96,7 +100,8 @@ const MCList = () => {
                       <td>{datas.phoneno}</td>
                       {datas.status === false && <td>{"not found"}</td>}
                       {datas.status === true && <td>{"found"}</td>}
-                      {datas.u_id === id && <td ><Button onClick={e => changeStatus(e,datas._id)} className='bg-danger border-danger shadow-sm'>Update</Button></td>}
+                      {datas.u_id !== id && dat && <td>{" "}</td>}
+                      {datas.u_id === id && <td className='text-center'><Button onClick={e => changeStatus(e,datas._id,datas.status)} className='bg-danger border-danger shadow-sm'>Update</Button></td>}
                      
                     </tr>
                   </tbody>
@@ -105,7 +110,6 @@ const MCList = () => {
                 
                   
                 </Table>
-                <div className="text-center">{error && <span>{error.message}</span>}</div>
               </Card.Body>
             </Card>
           
