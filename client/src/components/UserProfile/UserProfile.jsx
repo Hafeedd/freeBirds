@@ -19,7 +19,7 @@ const UsrProfile = () => {
   }
 
     const ChangeEdit = () => {
-        setEditProfile(true);
+        setEditProfile(!EditProfile);
       }
 
   return (
@@ -33,19 +33,31 @@ const UsrProfile = () => {
                     <div className='text-start'>
                         
 
-                <img 
+               {/*  <img 
                       alt='img'
-                      src={male} /* {female} */
+                      src={male} /* {female} 
                       width="100px"
                       height="100px" 
                       className="  shadow-sm rounded-circle align-self-center mt-0 mb-4  "
-                  />
-                  <Button variant="primary" type="submit" onClick={ChangeEdit()}>Edit</Button>
+                  /> */}
+                  <Button variant="primary" type="submit" onClick={()=>ChangeEdit()}>Edit</Button>
                   
                   </div>
                   
                   <div className="mb-3">
-                    {(EditProfile === true)? <Form /* onSubmit={handleSubmit} */ >
+                    {(EditProfile === false) ? 
+                                                <div className='pt-5 vw-100'>
+                            <h6> Name : {user.name}</h6>
+                            <h6> Email : {user.email}</h6>
+                            <h6> Phone : {user.phone}</h6>
+                            <h6> password : {user.name}</h6>
+                            <h6> city : {user.city}</h6>
+                            <h6> state : {user.state}</h6>
+                            {console.log("user details")}
+                        </div>
+
+                    :<div>
+                    <Form /* onSubmit={handleSubmit} */ >
                       <Form.Group className="mb-3" controlId="Name">
                         <Form.Label className="text-center">Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter Name" className='shadow border-0'
@@ -104,18 +116,11 @@ const UsrProfile = () => {
 
                       </div>
                     </Form>
-                    :
-                    
-                        <div className='pt-5 vw-100'>
-                            <h6> Name : {user.name}</h6>
-                            <h6> Email : {user.email}</h6>
-                            <h6> Phone : {user.phone}</h6>
-                            <h6> password : {user.name}</h6>
-                            <h6> city : {user.city}</h6>
-                            <h6> state : {user.state}</h6>
-                            {console.log("user details")}
-                        </div>
+                    </div>
+                       
                     }
+
+
                     <div className="mt-3">
                       <p className="mb-0  text-center">
                         want to go back?{' '}

@@ -30,6 +30,7 @@ import MCList from './components/table/MCList';
 import ViewNeeds from './components/orgNeeds/ViewNeeds';
 import OrgNeeds from './components/orgNeeds/OrgNeeds';
 import ReportMC from './components/missingchild/ReportMC';
+import UsrProfile from './components/UserProfile/UserProfile';
 
 function App() {
   const ProtectedRouteUser = ({children}) => {
@@ -76,6 +77,7 @@ function App() {
 
               <Route path="/organisation/" element={<Org/>}/>
               <Route path="/user/" element={<User/>}/>
+              <Route path="/userProfile/" element={<UsrProfile/>}/>
               <Route path="/addspsr/" element={<AddSpr/>}/>
               <Route path="/viewSpsr/" element={<ViewSponsor/>}/>
               <Route path="/viewUser" element={<ViewUser/>}/>
