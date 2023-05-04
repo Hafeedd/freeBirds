@@ -90,13 +90,8 @@ const ReportMC = () => {
             <Card className="px-4 shadow border-0">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
-               {/*  <img 
-                      alt='img'
-                      src='images/fblogo-rd.jpg'
-                      width="50px"
-                      height="50px" 
-                      className="   shadow-sm rounded-circle align-self-center mt-0 mb-4  "
-                  /> */} <h3 className='text-danger d-flex justify-content-center'>Register Missing Child</h3>
+              
+                   <h3 className='text-danger d-flex justify-content-center'>Register Missing Child</h3>
                   
                   <div className="mb-3">
                     <Form /* onSubmit={handleSubmit} */>
