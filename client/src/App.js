@@ -17,7 +17,7 @@ import Addorg from './pages/admin/Addorg';
 
 import CryptoJS  from 'crypto-js';
 import { NotFound,AddSpr,ViewSponsor,ViewUser,ViewOrg,Feedback,AboutUs,PostAwns,ViewAwns,
-         FeedbackList,MCList,ViewNeeds,OrgNeeds,ReportMC,UsrProfile } from './components/index';
+         FeedbackList,MCList,ViewNeeds,OrgNeeds,ReportMC,Feedbackres } from './components/index';
 
 function App() {
   const ProtectedRouteUser = ({children}) => {

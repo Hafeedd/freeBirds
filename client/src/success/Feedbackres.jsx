@@ -13,9 +13,8 @@ const Feedbackres = () => {
         <Container>
           <Row className="vh-100 d-flex justify-content-center align-items-center border-2 border-danger">
             <Col md={8} lg={6} xs={12}>
-              {/* <div className="border border-2 border-danger"></div> */}
+              
               <Card className=" shadow-lg border-5  border-white vh-75">
-              {/* <div className="border border-2 border-danger"></div> */}
                 <Card.Body>
                 <div className=' align-items-center'>
                     <img 

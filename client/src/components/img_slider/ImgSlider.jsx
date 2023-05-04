@@ -11,7 +11,7 @@ const ImgSlider = () => {
               controls={false} 
               indicators={false}>
       <Carousel.Item interval={2000}>
-            <img className="d-block w-100"
+            <img className="img-fluid d-block w-100"
                  src={Slide1}
                  alt="First slide"/>
 
