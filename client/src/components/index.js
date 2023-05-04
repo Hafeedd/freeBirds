@@ -1,0 +1,16 @@
+export {default as FbNavbar }from "./fbnavbar";
+export {default as NotFound }from './components/error/NotFound';
+export {default as  AddSpr }from './components/forms/AddSpr'; 
+export{default as ViewSponsor} from './components/table/SponsorsList'; 
+export{default as ViewUser }from './components/table/ViewUser';
+export{default as ViewOrg }from './components/table/viewOrg';
+export{default as Feedback }from './components/forms/Feedback';
+export{default as AboutUs }from './components/aboutUs/AboutUs';
+export{default as PostAwns }from './components/awareness/PostAwns';
+export{default as ViewAwns }from './components/awareness/ViewAwns';
+export{default as FeedbackList }from './components/table/FeedbackList';
+export{default as MCList} from './components/table/MCList';
+export{default as ViewNeeds }from './components/orgNeeds/ViewNeeds';
+export{default as OrgNeeds }from './components/orgNeeds/OrgNeeds';
+export{default as ReportMC} from './components/missingchild/ReportMC';
+export{default as UsrProfile} from './components/UserProfile/UserProfile';

@@ -16,21 +16,8 @@ import User from './pages/user/User';
 import Addorg from './pages/admin/Addorg';
 
 import CryptoJS  from 'crypto-js';
-import NotFound from './components/error/NotFound';
-import AddSpr from './components/forms/AddSpr'; 
-import ViewSponsor from './components/table/SponsorsList'; 
-import ViewUser from './components/table/ViewUser';
-import ViewOrg from './components/table/viewOrg';
-import Feedback from './components/forms/Feedback';
-import AboutUs from './components/aboutUs/AboutUs';
-import PostAwns from './components/awareness/PostAwns';
-import ViewAwns from './components/awareness/ViewAwns';
-import FeedbackList from './components/table/FeedbackList';
-import MCList from './components/table/MCList';
-import ViewNeeds from './components/orgNeeds/ViewNeeds';
-import OrgNeeds from './components/orgNeeds/OrgNeeds';
-import ReportMC from './components/missingchild/ReportMC';
-import UsrProfile from './components/UserProfile/UserProfile';
+import { NotFound,AddSpr,ViewSponsor,ViewUser,ViewOrg,Feedback,AboutUs,PostAwns,ViewAwns,
+         FeedbackList,MCList,ViewNeeds,OrgNeeds,ReportMC,UsrProfile } from './components/index';
 
 function App() {
   const ProtectedRouteUser = ({children}) => {
