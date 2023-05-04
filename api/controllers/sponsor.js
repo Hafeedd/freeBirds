@@ -57,7 +57,6 @@ export const viewSpnsrs = async (req,res,next) =>{
 export const deleteSpnsr = async (req,res,next) =>{
     try{
         await Sponsor.findOneAndDelete({id:req.params.id})
-        console.log("sonsor deleted")
         res.status(200).json("Sponsor deleted successfully")
     }catch(err){
         next(createError(400,"Failed to delete Sponsor."))

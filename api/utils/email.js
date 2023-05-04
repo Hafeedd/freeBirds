@@ -10,15 +10,28 @@ var transport = nodemailer.createTransport({
   });
 
 
-const mailservice = async(mail,cont) => {
+export const mail1 = async(mail,cont) => {
   const message = {
     from: "hafeedummer@gmail.com",
     to: mail,
     subject: "The Missing Child has been found!",
     text: `Your missing child has been found . For further details cotact:
     ${cont}`}
+    mailservice(message)
+  }
+
+  export const mail2 = async(cont) => {
+      const message = {
+      from: "hafeedummer@gmail.com",
+      to: "policemail@gmail.com",
+      subject: "The Missing Child has been reported!",
+      text: `There is been a missing child found and reported by a user . for contacting the user the contact no is:
+      ${cont}`}
+      mailservice(message)
+    }
     
-    transport.sendMail(message, (err, info) => {
+    const mailservice = async(mail) => {
+    transport.sendMail(mail, (err, info) => {
     if (err) {
     console.log(err)
     } else {

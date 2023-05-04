@@ -59,8 +59,15 @@ const ViewSponsor = () => {
                   </thead>
                   {loading ? (
                     "Loading Please Wait..."
-                    ) : (
-                    <>{datas.length === 0    &&
+                    ) : (<>
+                    {error.status === true &&
+                        <tbody>
+                        <tr>
+                        <td colSpan={7} className="text-center">{error.message}</td>
+                        
+                        </tr>
+                        </tbody>}
+                    {error.status === false && datas.length === 0    &&
                         <tbody>
                         <tr>
                         <td colSpan={7} className="text-center">No Sponors added yet</td>
@@ -81,8 +88,7 @@ const ViewSponsor = () => {
                   </tbody>
                   ))}
                   </>)}
-                </Table>
-                <div className="text-center">{error && <span>{error.message}</span>}</div>
+                </Table>                
               </Card.Body>
             </Card>
           </Col>

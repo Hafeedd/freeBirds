@@ -30,12 +30,10 @@ export const Logins =async () =>{
         for(let i = 0 ; i <= 12 ; i++){
             if(mm == i){
                 const month = year.months
-                // console.log(month)
                 const obj = {
                     months:month
                 }
                 const value = year.months[i]
-                console.log(obj)
                 obj.months.splice(i,1,value+1)
                 await loginInfo.findByIdAndUpdate(year.id,{$set:obj})
             }

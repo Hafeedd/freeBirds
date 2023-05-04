@@ -48,7 +48,22 @@ const ViewUser = () => {
                   {loading ? (
                     "Loading Please Wait..."
                     ) : (
-                    <> {datas.map((datas,i)=>(
+                    <>
+                    {error.status === true &&
+                        <tbody>
+                        <tr>
+                        <td colSpan={7} className="text-center">{error.message}</td>
+                        
+                        </tr>
+                        </tbody>}
+                    {error.status === false && datas.length === 0    &&
+                        <tbody>
+                        <tr>
+                        <td colSpan={7} className="text-center">No Users added yet</td>
+                        
+                        </tr>
+                        </tbody>}
+                    {datas.map((datas,i)=>(
                   <tbody key={i} >
                     <tr>
                       <td>{i+1}</td>
@@ -62,7 +77,6 @@ const ViewUser = () => {
                   ))}
                   </>)}
                 </Table>
-                <div className="text-center">{error && <span>{error.message}</span>}</div>
               </Card.Body>
             </Card>
           </Col>

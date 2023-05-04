@@ -24,7 +24,7 @@ function Feedback() {
       email:newFeedback.email,
       feedback:newFeedback.feedback,
       })
-      navigate(-1)
+      navigate("/feedbackRes")
     }catch (err){
       console.log(err.response.data)
       setError(true)

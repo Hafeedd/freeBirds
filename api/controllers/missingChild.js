@@ -4,6 +4,7 @@ import { deleteFace } from "../utils/searchChild.js";
 import Organisation from "../models/organisation.js";
 import { /* deleteface, */ insertFace } from "./searchChild.js";
 import Public from "../models/public.js";
+import { mail2 } from "../utils/email.js";
 // import { upload } from "../utils/uploader.js";
 
 //create missing_child
@@ -43,6 +44,7 @@ export const createMissingChild = async (req,res,next) =>{
             ...req.body,
             })
             await missingChild.save()
+            mail2(data.phone)
             res.status(200).json("Missing Child created successfully")
             console.log("missing child created")}
             catch(err){
@@ -58,10 +60,9 @@ export const createMissingChild = async (req,res,next) =>{
 
 //update missing child status
 export const updateMissingChild = async (req,res,next) =>{
-    console.log("in status update")
     try{
         await missing_child.findOneAndUpdate({_id:req.params.id},{$set:{
-            status:true
+            status:req.body.status
         }},{new:true})
         res.status(200).json("missingChild status updated to found");
     }catch(err){
@@ -69,7 +70,7 @@ export const updateMissingChild = async (req,res,next) =>{
     }
 };
 
-
+//search missing child with face id
 export const  searchfac = async (req,res,next) =>{
     try{
         const searchfac = await missing_child.findOne({aws_face_id:req.params.id})
@@ -84,6 +85,7 @@ export const MissingChild = async (req,res,next) =>{
     try{
         const missingChild = await missing_child.findById(req.params.id)
         res.status(200).json(missingChild);
+        console.log(missingChild)
     }catch(err){
         next(createError(400,"Failed to get missing child."))
     }
@@ -98,14 +100,3 @@ export const MissingChilds = async (req,res,next) =>{
         next(createError(400,"Failed to get missing child."))
     }
 };
-
-// //view missing children usinf aws-face-id
-// export const searchMCByFaceId = async (req,res,next) =>{
-//     const face_id = req.query.id;
-//     try{
-//         const foundChild = await missing_child.find({aws_face_id:face_id})
-//         res.status(200).json(foundChild);
-//     }catch(err){
-//         next(createError(400,"Failed to get missing child."))
-//     }
-// };

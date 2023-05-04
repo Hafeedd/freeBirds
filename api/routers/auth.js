@@ -8,7 +8,7 @@ const route = express.Router()
 
 //login
 route.post("/login",login);
-route.get("/logout",logout);
+route.get("/logout",verifyOrg,verifyUser,logout);
 route.get("/loginInfo",loginfo)
 
 //organisation

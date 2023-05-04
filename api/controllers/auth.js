@@ -4,13 +4,13 @@ import { createError } from "../utils/error.js";
 import {encrypt} from "../utils/cryto.js"
 import loginInfo from "../models/loginInfo.js"
 import { Logins } from "../config/loginInfos.js";
-import { searchCild } from "../config/srchImgInterval.js";
+// import { searchCild } from "../config/srchImgInterval.js"; 
 // import {intervalID} from "../config/srchImgInterval.js";
 
-// intervalID
+// intervalID()
 // searchCild()
 
-//login info
+//login info function
 export const loginfo = async (req,res,next) =>{
     var date = new Date()
     var yy = date.getFullYear();
@@ -23,6 +23,8 @@ export const loginfo = async (req,res,next) =>{
     }
 }
 
+
+//logout function
 export const logout = async (req,res,next) =>{
     try{
         if(req.cookies.access_token){
@@ -35,7 +37,7 @@ export const logout = async (req,res,next) =>{
     }
 }
 
-// Login
+// Login function
 export const login = async (req,res,next) =>{
     const name = req.body.username;
     try{

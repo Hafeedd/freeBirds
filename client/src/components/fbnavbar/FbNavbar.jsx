@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+
 import { useNavigate } from 'react-router-dom';
 import logo from "./fblogo.jpg"
 // import SearchMc from "./pages/searchchild/SearchMC";
@@ -19,13 +20,15 @@ const FbNavbar = ({type}) => {
  */
 
   const logout = async () =>{
-    try{
-      await axios.get('http://localhost:8800/api/auth/logout',{withCredentials: true})
-      localStorage.removeItem("user")
-      navigate("/")
-      }catch(err){
-      console.log(err)
-    }
+      console.log("loging out")
+      await axios.get('http://localhost:8800/api/auth/logout',{withCredentials:true})
+      .then(res => {
+        console.log(res)
+        localStorage.removeItem("user")
+        navigate("/")
+      }).catch(err =>{
+        console.log(err)
+      })
   }
 
 
@@ -61,22 +64,10 @@ const FbNavbar = ({type}) => {
             <Nav.Link className='text-white' onClick={() => navigate("/")}>Home</Nav.Link> */}
            
             <Nav.Link className='text-white' onClick={() => navigate("/aboutUs")}>About Us</Nav.Link>
-            {/* <NavDropdown
-              id="nav-dropdown-dark-example"
-              title="Missing child"
-              variant="dark"
-              menuVariant="dark" 
-              style={{ color: 'rgb(245, 245, 245)' }}>
-              
-              <NavDropdown.Item onClick={() => navigate("/SearchMc")} >View</NavDropdown.Item>
-              <NavDropdown.Item onClick={() => navigate("/SearchMc")}>Add</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => navigate("/login")}>
-              Case status
-              </NavDropdown.Item>
-            </NavDropdown> */}
             
+            { type === "home"  &&
             <Nav.Link className='text-white' onClick={() => navigate("/signup")}>Sign up</Nav.Link>           
+                   }
           </Nav>
           {/* <Form className="d-flex">
             <Form.Control

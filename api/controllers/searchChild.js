@@ -5,7 +5,6 @@ import SearchingChild from "../models/searchingChild.js";
 import { indexFaces, search_face, deleteFace } from "../utils/searchChild.js";
 
 //detect face
-var i = 0
 export const detectFace = async (req,res) =>{
 
     var face = await SearchingChild.findOne({photo:req.body.photo})
@@ -19,20 +18,16 @@ export const detectFace = async (req,res) =>{
                 name:name.username,
                 ...req.body,
             })
-            console.log(searchingChild)
-
             search_face(obj,async(data) => {
                 if(data.found === false)
                 {
-                console.log("in err")
                 if(!face){
                     await searchingChild.save();  
                     console.log("image saved")
                 }
             }
             else{
-                // await searchingChild.save();
-                console.log("in data")
+                await searchingChild.save();
                 res.send(data.resultAWS.FaceId)    
             }
             

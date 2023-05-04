@@ -9,7 +9,7 @@ const FeedbackList = () => {
 
   const deleteFeedback = async (e,id) =>{
 
-      const res = await axios.delete(`http://localhost:8800/api/feedback/${id}`,{withCredentials: true});
+      await axios.delete(`http://localhost:8800/api/feedback/${id}`,{withCredentials: true});
       window.location.reload(true)
   }
 
@@ -39,11 +39,16 @@ const FeedbackList = () => {
                   {loading ? (
                     "Loading please wait..."
                   ) : (<>
-                  {datas.length === 0    &&
+                  {error.status === true &&
                     <tbody>
                     <tr>
-                    <td colSpan={4} className="text-center">No datas found</td>
-                    
+                    <td colSpan={4} className="text-center">{error.message}</td>                    
+                    </tr>
+                    </tbody>}
+                  {error.status === false && datas.length === 0    &&
+                    <tbody>
+                    <tr>
+                    <td colSpan={4} className="text-center">No datas found</td>                    
                     </tr>
                     </tbody>}
                   {datas.map((datas,i)=>(
@@ -58,7 +63,6 @@ const FeedbackList = () => {
                   ))}
                   </>)}
                 </Table>
-                <div className="text-center">{error && <span>{error.message}</span>}</div>
               </Card.Body>
             </Card>
           
