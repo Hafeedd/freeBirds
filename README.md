@@ -7,11 +7,11 @@ College project for helping orphans through charitable trust and helps to find m
 <br>
 
 <h2>login page</h2>
-<br>
-![Screenshot 2023-08-18 000306](https://github.com/nawaf-vp/freeBirds/assets/102661016/41a4a2c3-3746-4b4d-bf9a-b0c058046e7b)
-<br>
-<br>
+
+<br>![Screenshot 2023-08-18 000306](https://github.com/nawaf-vp/freeBirds/assets/102661016/05736ba5-2334-43ce-a89d-f7b8068a5fab)
+
+<br><br>
 
 <h2>sign up page</h2>
 <br>
-![Screenshot 2023-08-18 000325](https://github.com/nawaf-vp/freeBirds/assets/102661016/eeb91047-87bc-4711-a682-342b3bf7d5d1)
+![Screenshot 2023-08-18 000325](https://github.com/nawaf-vp/freeBirds/assets/102661016/5b81050f-6ede-48f5-af47-ce1f3b136167)
