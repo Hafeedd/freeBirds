@@ -30,7 +30,7 @@ const AboutUs = () => {
           </div>
           <Row>
             <Col sm={6} className='d-flex justify-content-center'>
-              <Image src={img3} className='rounded-4 shadow '/>
+              <Image src={img3} className=' rounded-4 shadow '/>
             </Col>
             <Col sm={6}>
               <p>We are here to manage orphans in a distributed transaction system. We ensures that orphans cannot observe inconsistencies and that orphans are eventually eliminated.Thus, make allowing orphans to get necessary needs in their life. Our website includes different organizations and these organizations provide help for these people through our website</p>

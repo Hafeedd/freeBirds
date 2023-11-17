@@ -60,35 +60,15 @@ const FbNavbar = ({type}) => {
             className="me-auto  my-3  my-lg-0 p-1 h" 
             style={{ maxHeight: '100px',maxWidth:'400px' }}
             navbarScroll
-          >{/* 
-            <Nav.Link className='text-white' onClick={() => navigate("/")}>Home</Nav.Link> */}
+          >
            
             <Nav.Link className='text-white' onClick={() => navigate("/aboutUs")}>About Us</Nav.Link>
-            {/* <NavDropdown
-              id="nav-dropdown-dark-example"
-              title="Missing child"
-              variant="dark"
-              menuVariant="dark" 
-              style={{ color: 'rgb(245, 245, 245)' }}>
-              
-              <NavDropdown.Item onClick={() => navigate("/SearchMc")} >View</NavDropdown.Item>
-              <NavDropdown.Item onClick={() => navigate("/SearchMc")}>Add</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item onClick={() => navigate("/login")}>
-              Case status
-              </NavDropdown.Item>
-            </NavDropdown> */}
+            
             { type === "home"  &&
             <Nav.Link className='text-white' onClick={() => navigate("/signup")}>Sign up</Nav.Link>           
                    }
           </Nav>
-          {/* <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            /> */}
+         
             { (type!== "admin" && type!== "user")&&type!== "org" ? <Button 
                 onClick={() => navigate("/login")}
                 variant="danger" 

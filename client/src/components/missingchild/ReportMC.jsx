@@ -26,7 +26,7 @@ const ReportMC = () => {
 
   const navigate = useNavigate()
 
-  const [error,setError] = useState(false);
+   const [error,setError] = useState(false);
   const [errorM,setErrorM] = useState(undefined);
 
   const handleSubmit = async (e) => {
@@ -90,16 +90,11 @@ const ReportMC = () => {
             <Card className="px-4 shadow border-0">
               <Card.Body>
                 <div className="mb-3 mt-md-4">
-               {/*  <img 
-                      alt='img'
-                      src='images/fblogo-rd.jpg'
-                      width="50px"
-                      height="50px" 
-                      className="   shadow-sm rounded-circle align-self-center mt-0 mb-4  "
-                  /> */} <h3 className='text-danger d-flex justify-content-center'>Register Missing Child</h3>
+              
+                   <h3 className='text-danger d-flex justify-content-center'>Register Missing Child</h3>
                   
                   <div className="mb-3">
-                    <Form onSubmit={handleSubmit}>
+                    <Form /* onSubmit={handleSubmit} */>
                       <Form.Group className="mb-3" controlId="Name">
                         <Form.Label className="text-center">Name</Form.Label>
                         <Form.Control type="text" placeholder="Enter child Name" className='shadow border-0'
@@ -188,7 +183,7 @@ const ReportMC = () => {
                     <div className="mt-3">
                       <p className="mb-0  text-center">
                         Already reported?{' '}
-                        <Link to="/searchMc/">search</Link>
+                        <Link to="/searchMc/">search child</Link>
                       </p>
                     </div>
                   </div>

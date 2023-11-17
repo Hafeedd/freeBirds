@@ -14,7 +14,7 @@ export const Features = ({type}) => {
  {/*  <div className=" ps-5 pe-0 align-content-end col-md-10 col-md-offset-1 section-title ">
           <h2 className=""></h2>
         </div>  */}
-        <div className=" row justify-content-center text-white max-vw-25 rounded-4 shadow-lg pt-3 ps-3 pe-3 pb-3 max-vw-50 gap-1">
+        <div className=" row justify-content-center text-white max-vw-25 rounded-4 ms-2 me-2 shadow-lg pt-3 ps-3 pe-3 pb-3 max-vw-50 gap-1">
           
                 <div className="  shadow  col-xs-6 col-md-3 bg-danger rounded-4 p-4 text-white z-index-1">
                   {" "}
@@ -33,15 +33,15 @@ export const Features = ({type}) => {
                  }
                 </div>
 
-                {type ==="user" &&<div className="mw-75 shadow col-xs-6 col-md-3 bg-danger rounded-4 p-4 z-index-3">
+                {type ==="user" &&<div className="mw-75 shadow col-xs-6 col-md-3 bg-danger rounded-4 p-4 ">
                   {" "}
                   <i className="w-10"><FaSearch/></i>
                   <h3>Missing child</h3>
-                  <div className="ps-2 pe-2 d-flex justify-content-center gap-2 pt-4">
-                                      <Button  className="bg-white text-danger border-white" onClick={() => navigate("/ReportMc/")}>Report</Button> <br/>
-                                      <Button className=" bg-white text-danger border-white" onClick={() => navigate("/searchMc/")}>Search </Button>   
-                                      <Button className="ps-4 pe-4 bg-white text-danger border-white" onClick={() => navigate("/McList")}>View </Button>
-                                       
+                  <div className="ps-2 pe-2 d-flex justify-content-center gap-3 pt-4">
+
+                                       <div className=" bg-white text-danger border-white rounded  p-2 " onClick={() => navigate("/ReportMc/")}>Report</div>
+                                       <div className=" bg-white text-danger border-white rounded  p-2" onClick={() => navigate("/searchmc")}>Search</div>
+                                       <div className=" bg-white text-danger border-white rounded  p-2" onClick={() => navigate("/McList")}>View</div>
                                    </div>
                   </div>}
                 {/* :
